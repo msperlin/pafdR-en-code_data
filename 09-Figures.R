@@ -1,4 +1,4 @@
-#' # Creating and Saving Figures
+#' # Creating and Saving Figures {#Figures} 
 #' 
 #' 
 #' The use of graphical resources in technical rep

@@ -1,27 +1,13 @@
 #' # Importing and exporting data
 #' 
-#' In the previous chapter, we studied the main ty
-#' 
-#' ## About financial datasets
-#' 
-#' Before learning how to import data into R, it i
-#' 
-#' In most of the financial exchanges, when a comp
-#' 
-#' Prices in financial markets move according to s
-#' 
-#' It is important to point out that the data from
-#' 
-#' Another popular dataset in finance is financial
-#' 
-#' Now that you understands the most used types of
+#' In chapter \ref{DataStructureObjects}, we studi
 #' 
 #' 
-#' ## Import data from local files
+#' ## Importing data from local files
 #' 
 #' The easiest way to import data into R is using 
 #' 
-#' In all cases presented here, we will assume tha
+#' In all presented cases we will assume that the 
 #' 
 #' In this situation, using a folder for the scrip
 #' 
@@ -36,6 +22,7 @@
 
 #' 
 #' Notice how the code is self contained and porta
+#' 
 #' 
 #' 
 #' ### Importing data from a .csv file (_comma sep
@@ -111,7 +98,7 @@ library(readr)
 
 # set cols from import message
 my.cols <- cols(date = col_date(format = ""),
-				price = col_double() ) 
+                price = col_double() ) 
 
 # read file with readr::read_csv
 my.df.sp500 <- read_csv(my.f, col_types = my.cols)
@@ -137,12 +124,6 @@ print(sapply(my.df.sp500, class))
 #' 
 #' In this section, we will give priority to packa
 #' 
-## ----eval=FALSE----------------------------------------------------------
-## install.packages('readxl')
-
-#' 
-#' Now, consider a file called `SP500-Excel.xlsx` 
-#' 
 ## ------------------------------------------------------------------------
 library(readxl)
 
@@ -152,8 +133,11 @@ my.f <- 'data/SP500-Excel.xlsx'
 # read excel file 
 my.df <- read_excel(my.f, sheet = 'sp500-prices')
 
-# print with str
-print(str(my.df))
+# print classes
+print(sapply(my.df, class))
+
+# print with head (first five rows)
+print(head(my.df))
 
 #' 
 #' As we can see, one of the benefits of using Exc
@@ -163,7 +147,7 @@ print(str(my.df))
 #' 
 #' ### Importing data from a .RData file
 #' 
-#' R has a native format to save objects from your
+#' R has a native format to save objects from the 
 #' 
 #' To create a new _.RData_ file, use the `save` f
 #' 
@@ -203,7 +187,7 @@ print(ls())
 #' 
 #' ### Importing data from SQLITE
 #' 
-#' The use of .csv or .RData files for storing dat
+#' The use of _.csv_ or _.RData_ files for storing
 #' 
 #' This brings us to the topic of _database softwa
 #' 
@@ -226,13 +210,13 @@ N = 10^6
 # create simulated dataframe
 my.large.df.1 <- data.frame(x=runif(N), 
                             G= sample(c('A','B'),
-                                         size = N,
-                                         replace = TRUE))
+                                      size = N,
+                                      replace = TRUE))
 
 my.large.df.2 <- data.frame(x=runif(N), 
                             G = sample(c('A','B'),
-                                         size = N,
-                                         replace = TRUE))
+                                       size = N,
+                                       replace = TRUE))
 
 # set name of SQLITE file
 f.sqlite <- 'data/MySQLiteDatabase.SQLITE'
@@ -247,7 +231,8 @@ dbWriteTable(conn = my.con, name = 'MyTable2', value = my.large.df.2)
 # disconnect
 dbDisconnect(my.con)
 
-#' From the logical output of `dbWriteTable` we ca
+#' 
+#' The `TRUE` output of `dbWriteTable` indicates t
 #' 
 #' Now, let's use the previously created file to r
 #' 
@@ -270,9 +255,13 @@ print(str(my.df))
 #' Another example of using SQLITE is with the act
 #' 
 ## ------------------------------------------------------------------------
+# set sql statement
 my.SQL <- "select * from myTable2 where G='A'"
+
+# get query
 my.df.A <- dbGetQuery(conn = my.con, statement = my.SQL)
 
+# disconnect from db
 dbDisconnect(my.con)
 
 # print with str
@@ -299,7 +288,7 @@ my.txt <- readLines(my.f)
 print(my.txt[1:5])
 
 #' 
-#' In this case, we imported the entire content of
+#' In this example, we imported the entire content
 #' 
 #' 
 #' ### Other file formats
@@ -311,7 +300,7 @@ print(my.txt[1:5])
 #' 
 #' One of the great advantages of using R for data
 #' 
-#' In most cases, the importation of data from the
+#' In most cases, the importation of financial dat
 #' 
 #' 
 #' ### Package `quantmod`
@@ -377,8 +366,8 @@ first.date <- Sys.Date()-30
 last.date <- Sys.Date()
 
 l.out <- BatchGetSymbols(tickers = my.tickers,
-                        first.date = first.date,
-                        last.date = last.date)
+                         first.date = first.date,
+                         last.date = last.date)
 
 
 #' 
@@ -413,12 +402,13 @@ print(tail(l.out$df.tickers))
 ## last.date <- Sys.Date()
 ## 
 ## l.out <- BatchGetSymbols(tickers = my.tickers,
-##                         first.date = first.date,
-##                         last.date = last.date)
+##                          first.date = first.date,
+##                          last.date = last.date)
 ## 
 
 #' 
 #' Be aware that running the previous code takes t
+#' 
 #' 
 #' ### Package `finreportr`
 #' 
@@ -460,7 +450,7 @@ library(dplyr)
 # set col and date
 my.col <- 'Earnings Per Share, Basic'
 my.date <- '2016-12-31'
- 
+
 # print earnings per share
 print(filter(my.income,  
              Metric == my.col))
@@ -469,7 +459,7 @@ print(filter(my.income,
 ## ----echo=FALSE----------------------------------------------------------
 my.earnings <- filter(my.income,
                       endDate == my.date, 
-					  Metric  == my.col)$Amount
+                      Metric  == my.col)$Amount
 
 #' 
 #' From the data we can see that Facebook investor
@@ -483,7 +473,7 @@ my.earnings <- filter(my.income,
 library(tidyquant)
 
 #' 
-#' `tidyquant` is a package that offers lots of fu
+#' `tidyquant` is a package that offers many funct
 #' 
 #' The package includes functions for obtaining fi
 #' 
@@ -498,9 +488,9 @@ first.date <- '2017-01-01'
 last.date <-  Sys.Date()
 
 my.df <- my.ticker %>% 
-    tq_get(get = "stock.prices", 
-	 from = first.date, 
-	 to = last.date)
+  tq_get(get = "stock.prices", 
+         from = first.date, 
+         to = last.date)
 
 print(tail(my.df))
 
@@ -509,8 +499,8 @@ print(tail(my.df))
 #' 
 ## ------------------------------------------------------------------------
 df.key.ratios <- c("AAPL") %>%
-           tq_get(get = "key.ratios")
-		   
+  tq_get(get = "key.ratios")
+
 print(df.key.ratios)		   
 
 #' 
@@ -519,7 +509,7 @@ print(df.key.ratios)
 ## ------------------------------------------------------------------------
 # get profitability table
 df.profitability <- df.key.ratios$data[[2]]
-		   
+
 print(tail(df.profitability))
 
 #' 
@@ -529,13 +519,12 @@ print(tail(df.profitability))
 # get stocks in AMEX
 print(head(tq_exchange('AMEX')))
 
-#' 		   
+#' 
 #' We can also get information about components of
 #' 
 ## ----echo=FALSE----------------------------------------------------------
-# get available indices
-available.indices <- tq_index_options()
-print(available.indices)
+# print available indices
+print(tq_index_options())
 
 #' 
 #' Let get information for `"DOWJONES"`.
@@ -552,7 +541,7 @@ print(tq_index("DOWJONES"))
 #' 
 #' ### Package `GetHFData`
 #' 
-#' Package `GetHFData` [@gethfdata] was written by
+#' Package `GetHFData` [@gethfdata] is designed to
 #' 
 #' Let's try a simple example by downloading trade
 #' 
@@ -560,31 +549,38 @@ print(tq_index("DOWJONES"))
 file.remove(list.files('ftp files',full.names = TRUE))
 
 #' 
-## ---- tidy=FALSE, message=FALSE------------------------------------------
-library(GetHFData)
-
-# set ticker for Petrobras
-my.ticker <- c('PETR4','VALE5')
-my.type.market <- 'equity'
-
-# get available dates from ftp
-df.available.dates <- ghfd_get_ftp_contents(my.type.market)
-# set last date
-last.date <- max(df.available.dates$dates)
-
-# get data!
-my.df <- ghfd_get_HF_data(my.assets = my.ticker, 
-                          type.market = 'equity',
-                          first.date = last.date,
-                          last.date = last.date,
-                          type.output = 'agg',
-                          agg.diff = '5 min')
-
-# print results
-print(str(my.df, max.level=1))
+## ---- eval=FALSE, tidy=FALSE, message=FALSE------------------------------
+## library(GetHFData)
+## 
+## # set tickers and type of market
+## my.ticker <- c('PETR4','VALE5')
+## my.type.market <- 'equity'
+## 
+## # get available dates from ftp
+## df.available.dates <- ghfd_get_ftp_contents(my.type.market)
+## 
+## # set last date
+## last.date <- max(df.available.dates$dates)
+## 
+## # get data!
+## my.df <- ghfd_get_HF_data(my.assets = my.ticker,
+##                           type.market = 'equity',
+##                           first.date = last.date,
+##                           last.date = last.date,
+##                           type.output = 'agg',
+##                           agg.diff = '5 min')
+## 
+## # print results
+## print(head(my.df))
 
 #' 
-#' As you can see, function `ghfd_get_HF_data` dow
+## ---- echo=FALSE---------------------------------------------------------
+load('data/example_gethfdata.RDATA')
+print(head(my.df))
+
+#' 
+#' 
+#' The output of `ghfd_get_HF_data` is a `datafram
 #' 
 #' 
 #' ### Package `ustyc`
@@ -613,12 +609,14 @@ my.yield.curve <- getYieldCurve(year = 2016)
 print(head(my.yield.curve$df))
 
 #' 
+#' In chapter \ref{Figures} we will learn how to u
+#' 
 #' 
 #' ### Package `Quandl`
 #' 
 #' Another major source of financial data is the _
 #' 
-#' To use Quandl, the first step is to register a 
+#' The first step in using `Quandl` is to register
 #' 
 ## ------------------------------------------------------------------------
 # set api key to quandl
@@ -641,9 +639,9 @@ last.date <- Sys.Date()
 
 # get data!
 my.df <- Quandl(code = my.symbol,
-			          type='raw', 
+                type='raw', 
                 start_date = first.date,
-				        end_date = last.date)
+                end_date = last.date)
 
 print(tail(my.df))
 
@@ -651,61 +649,156 @@ print(tail(my.df))
 #' Notice how we used `type = 'raw'` in the inputs
 #' 
 #' 
+#' ### Package `Rbitcoin`
+#' 
+#' Another package worth mentioning is `RBitcoin`,
+#' 
+## ---- message=FALSE------------------------------------------------------
+library(Rbitcoin)
+
+# set mkt, currency pair and type of action
+my.mkt <- "kraken"
+my.currency <- c("BTC","EUR")
+my.action <- 'trades'
+
+# import data
+my.df <- market.api.process(market = my.mkt,
+                            currency_pair = my.currency,
+                            action = my.action)
+
+# print it
+print(my.df)
+
+#' 
+#' The output of `market.api.process` is a `list` 
+#' 
+## ---- message=FALSE------------------------------------------------------
+print(tail(my.df$trades))
+
+#' 
+#' It includes price and time information for the 
+#' 
+#' 
 #' ### Other packages
 #' 
-#' Also worth highlighting two other packages that
-#' 
-#' WRITE MORE HERE
+#' In CRAN you'll find many more packages for impo
 #' 
 #' 
 #' ### Accessing data from web pages (_webscraping
 #' 
-#' The previous packages are very useful because t
+#' The previous packages are very useful as they m
 #' 
-#' #### Scraping the website of Bank of England
+#' #### Scraping the components of the SP500 index
 #' 
-#' This page shows the current prices and returns 
+#' In its website ,Wikipedia offers a [section](ht
 #' 
-#' WRITE MORE HERE
-#' 
-## ----BOE-website, echo = FALSE, out.width = '100%', fig.cap = 'Bank of England website'----
-knitr::include_graphics('figs/website_BOE-webscrapping.png')
+## ----SP500-wikipedia, echo = FALSE, out.width = '75%', fig.cap = 'Bank of England website'----
+knitr::include_graphics('figs/SP500-Wikipedia.png')
 
 #' 
-#' The import of such data for R easy. The package
+#' The information in this web page is constantly 
+#' 
+#' The first step in webscraping is finding out wh
+#' 
+## ----SP500-Wikipedia-webscraping, echo = FALSE, out.width = '75%', fig.cap = 'Finding xpath from website'----
+knitr::include_graphics('figs/SP500-Wikipedia_webscraping.png')
+
+#' 
+#' In this case, the copied _xpath_ should be:
+#' 
+## ---- eval=FALSE---------------------------------------------------------
+## '//*[@id="mw-content-text"]/table[1]/thead/tr/th[2]'
+
+#' 
+#' 
+#' This is the address of the header of the table.
+#' 
+#' Now that we have the location of what we want, 
+#' 
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 library(rvest)
 
-my.url <- 'http://www.bankofengland.co.uk/Pages/home.aspx'
+# set url and xpath
+my.url <- 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
+my.xpath <- '//*[@id="mw-content-text"]/table[1]'
 
-html.code <- read_html(my.url)
+# get table
+df.SP500Stocks <- my.url %>%
+  read_html() %>%
+  html_nodes(xpath = my.xpath) %>%
+  html_table()
 
-my.xpath <- paste0('//*[@id="ctl00_ctl21_g_347435ac_bd2d_',
-                  '401a_a07a_99384607446d_ctl00_lstKeyFacts_ctrl3_Label2"]')
-my.inflation <- html_text(html_nodes(x = html.code,xpath = my.xpath ))
+# get nodes from html
+out <- html_nodes(read_html(my.url),
+                  xpath = my.xpath)
 
-my.xpath <- paste0('//*[@id="ctl00_ctl21_g_347435ac_bd2d_401a_a07a_',
-                   '99384607446d_ctl00_lstKeyFacts_ctrl0_Label2"]')
+# get table from nodes
+df.SP500Stocks <- html_table(out)
 
-my.intrate <- html_text(html_nodes(x = html.code,xpath = my.xpath ))
+# isolate it and print it
+df.SP500Stocks <- df.SP500Stocks[[1]]
+print(head(df.SP500Stocks))
 
-cat("\nCurrent inflation in the UK: ", my.inflation)
-cat("\nCurrent interest rate in the UK: ", my.intrate)
+#' 
+#' Object `df.SP500Stocks` contains a mirror of th
+#' 
+#' 
+#' #### Scraping the website of the Reserve Bank o
+#' 
+#' As another example of webscraping with R, lets 
+#' 
+## ----RBA-website, echo = FALSE, out.width = '75%', fig.cap = 'Website for the Reserve Bank of Australia'----
+knitr::include_graphics('figs/website_RBA-webscrapping.png')
+
+#' 
+#' As you can see, the website offers many financi
+#' 
+#' The first step is finding out the _xpath_ of th
+#' 
+## ---- eval=FALSE---------------------------------------------------------
+## my.xpath.inflation <- '//*[@id="content"]/section[1]/div/div[2]/p'
+## my.xpath.int.rate <- '//*[@id="content"]/section[1]/div/div[1]/p'
+
+#' 
+#' A difference from the previous example is that 
+#' 
+## ---- eval=FALSE---------------------------------------------------------
+## library(rvest)
+## 
+## # set address of RBA
+## my.url <- 'http://www.rba.gov.au/'
+## 
+## # read html
+## html.code <- read_html(my.url)
+## 
+## # get inflation from html
+## my.inflation <- html_text(html_nodes(html.code,
+##                                      xpath = my.xpath.inflation ))
+## 
+## # get interest rate from html
+## my.int.rate <- html_text(html_nodes(x = html.code,
+##                                    xpath = my.xpath.int.rate ))
+## 
+## # print result
+## cat("\nCurrent inflation in AUS:", my.inflation)
+## cat("\nCurrent interest rate AUS:", my.int.rate)
 
 #' 
 #' 
+## ----echo=FALSE----------------------------------------------------------
+cat("\nCurrent inflation in AUS: ", '1.5%')
+cat("\nCurrent interest rate in AUS: ", '1.50%')
+
 #' 
 #' The use of _Webscraping_ techniques becomes a s
 #' 
 #' 
-#' ## Export to local file
+#' ## Exporting to local file
 #' 
-#' A very common operation in the use of R is to e
+#' A very common operation in the use of R is to w
 #' 
-#' Exporting data from R involves a decision regar
-#' 
-#' Thus, it is very easy to share data with other 
+#' In most situations, the use of _.csv_ files sat
 #' 
 #' 
 #' ### Exporting data to a _.csv_ file 
@@ -759,6 +852,23 @@ print(head(my.df.import))
 #' 
 #' As we can see, the row numbers are no longer sa
 #' 
+#' ### Exporting data to a _RData_ file
+#' 
+#' The native solution for exporting R objects is 
+#' 
+## ---- tidy=FALSE---------------------------------------------------------
+# set random data
+my.x <- runif(100)
+my.df <- data.frame(y = runif(100),
+                    z = runif(100))
+
+my.f <- 'data/temp.RData'
+save(list = c('my.x', 'my.df'),
+     file = my.f)
+      
+
+#' 
+#' After saving it, the contents of file `r my.f` 
 #' 
 #' ### Exporting data to an Excel file
 #' 
@@ -782,18 +892,26 @@ write.xlsx(x = my.df, file = f.out, sheetName = "my df")
 #' 
 #' An important information here is that, if you w
 #' 
-## ------------------------------------------------------------------------
+## ---- tidy=FALSE---------------------------------------------------------
 # create two dataframes
 N <- 25
-my.df.A <- data.frame(y = seq(1,N), z = rep('a',N))
+my.df.A <- data.frame(y = seq(1,N), 
+                      z = rep('a',N))
+
 my.df.B <- data.frame(z = rep('b',N))
 
 # set file out
 f.out <- 'data/temp.xlsx'
 
 # write in different sheets
-write.xlsx(x = my.df.A, file = f.out, sheetName = "my df A")
-write.xlsx(x = my.df.B, file = f.out, sheetName = "my df B", append = TRUE )
+write.xlsx(x = my.df.A, 
+           file = f.out, 
+           sheetName = "my df A")
+
+write.xlsx(x = my.df.B, 
+           file = f.out, 
+           sheetName = "my df B", 
+           append = TRUE )
 
 #' 
 #' 
@@ -821,100 +939,3 @@ print(readLines(my.f))
 #' As we can see, it worked as expected.
 #' 
 #' 
-#' ## The format of the `dataframe` (_long_ and _w
-#' 
-#' After understanding the process of importing in
-#' 
-#' **In the wide format**, the rows are usually in
-#' 	
-#' 
-#' | refdate    | STOCK1| STOCK2| STOCK3|
-#' |------------|-------|-------|-------|
-#' | 2015-01-01 | 10    | 3     | 6     |
-#' | 2015-01-02 | 11    | 3.1   | 7     |
-#' | 2015-01-03 | 10.5  | 3.2   | 7.5   |
-#' | 2015-01-04 | 12    | 3.5   | 6     |
-#' | ...        | ...   | ...   | ...   |
-#' 
-#' Note that the above table has three distinct in
-#' 	
-#' **In the long format**, each row of the `datafr
-#' 
-#' | refdate    | asset.code | Price |
-#' |------------|------------|-------|
-#' | 2015-01-01 | STOCK1     | 10    |
-#' | 2015-01-01 | STOCK2     | 3     |
-#' | 2015-01-01 | STOCK3     | 6     |
-#' | 2015-01-02 | STOCK1     | 11    |
-#' | 2015-01-02 | STOCK2     | 3.1   |
-#' | 2015-01-02 | STOCK3     | 7     |
-#' | 2015-01-03 | STOCK1     | 10.5  |
-#' | 2015-01-03 | STOCK2     | 3.2   |
-#' | 2015-01-03 | STOCK3     | 7.5   |
-#' | ...        | ...        | ...   |
-#' 
-#' 	
-#' At first glance, this argument may seem trivial
-#' 
-#' In Finance, the wide format is generally used i
-#' 
-#' 
-#' ### Converting a `dataframe` structure (long an
-#' 
-#' The conversion from one format to the other is 
-#' 
-## ------------------------------------------------------------------------
-library(tidyr)
-
-# set dates and stock vectors
-refdate <- as.Date('2015-01-01') + 0:3
-STOCK1 <- c(10, 11, 10.5, 12)
-STOCK2 <- c(3, 3.1, 3.2, 3.5)
-STOCK3 <- c(6, 7, 7.5, 6)
-
-# create wide dataframe
-my.df.wide <- data.frame(refdate, STOCK1, STOCK2, STOCK3)
-
-# convert wide to long
-my.df.long <- gather(data = my.df.wide,key = 'ticker',value = 'price', - refdate)
-
-# print result
-print(my.df.long)
-
-#' 
-#' To perform the reverse conversion, _long_ to _w
-#' 
-## ---- tidy=FALSE---------------------------------------------------------
-# convert from long to wide
-my.df.wide.converted <- spread(data = my.df.long, 
-                               key = 'ticker',
-							   value = 'price')
-							   
-# print result
-print(my.df.wide.converted)
-
-#' 
-#' In the case of more complex conversions, where 
-#' 
-## ---- tidy=FALSE---------------------------------------------------------
-library(reshape2)
-
-# use melt to change from wide to long
-my.df.long <- melt(data = my.df.wide, 
-				   id.vars = 'refdate', 
-				   variable.name = 'ticker', 
-				   value.name = 'price')
-
-# print result				   
-print(my.df.long)
-
-#' 
-## ------------------------------------------------------------------------
-# use melt to change from long to wide
-my.df.wide.converted <- dcast(data = my.df.long, 
-                              formula = refdate ~ ticker, 
-							  value.var = 'price')
-print(my.df.wide.converted)
-
-#' 
-#' It is important to know these functions when wo

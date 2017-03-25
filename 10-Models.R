@@ -1,4 +1,4 @@
-#' # Estimation models with R
+#' # Financial Models in R
 #' 
 #' 
 #' Finance has inherited many methodological proce
@@ -209,7 +209,8 @@ print(forecast(my.autoarima, h = 5))
 #' 
 #' Explaining it further, the `r if (my.engine!='e
 #' 
-#' ### Simulating and estimating models Garch
+#' 
+#' ### Simulating Garch models
 #' 
 #' R does not have a native function to simulate a
 #' 
@@ -270,8 +271,8 @@ print(p)
 ## ---- tidy=FALSE---------------------------------------------------------
 # estimate garch model
 my.garchfit <- garchFit(data = sim.garch, 
-						formula = ~ arma(1,0) + garch(1,1), 
-						trace = FALSE)
+                        formula = ~ arma(1,0) + garch(1,1), 
+                        trace = FALSE)
 
 #' 
 #' To learn more about the estimated model, we can
@@ -285,7 +286,7 @@ print(my.garchfit)
 #' Function `summary` also works for Garch models.
 #' 
 #' 
-#' ### Predicting models Garch
+#' ### Forecasting Garch models
 #' 
 #' Forecasting Garch models involves two elements:
 #' 
@@ -298,56 +299,149 @@ predict(my.garchfit, n.ahead = 3)
 #' 
 #' The first column of the previous result is the 
 #' 
-#' ## Dealing with several models with `dplyr`
+#' ## Dealing with several models
 #' 
-#' WRITE MORE HERE
+#' In the previous sections we learned to estimate
 #' 
 ## ------------------------------------------------------------------------
-library(readr)
-library(broom)
-library(dplyr)
+set.seed(10)
 
-set.seed(100)
+# set number of stocks
+n.stocks <- 4
 
+# load data from .RData
 load('data/SP500-Stocks-WithRet.RData')
 
-my.tickers <- sample(unique(my.df$ticker), 5)
+# select tickers
+my.tickers <- sample(unique(my.df$ticker), n.stocks)
 
+# set my.df
 my.df <- my.df[my.df$ticker %in% my.tickers, ]
 
-my.f <- 'data/SP500.csv'
-df.SP500 <- read.csv(my.f, colClasses = c('Date', 'numeric'))
+# renew factors in ticker
+my.df$ticker <- as.factor(as.character(my.df$ticker))
 
-# use calc.ret function from chapter Programming
-df.SP500$retSP500 <- calc.ret(df.SP500$price)
+#' 
+#' Now, what we want to do with this data is to se
+#' 
+## ---- tidy=FALSE---------------------------------------------------------
+library(forecast)
 
-df.SP500 <- df.SP500[ , c('date','retSP500')]
+my.l <- tapply(X = my.df$ret, 
+               INDEX = my.df$ticker, 
+               FUN = arima, 
+               order = c(1,0,0))
 
-my.df <- merge(x = my.df, y= df.SP500, by.x = 'ref.date', by.y = 'date')
 
-models <- my.df %>%
+#' Each of the models is available in `my.l`. In o
+#' 
+## ------------------------------------------------------------------------
+print(sapply(X = my.l, FUN = coef))
+
+#' 
+#' One thing to notice here that, by using `tapply
+#' 
+## ---- tidy=FALSE---------------------------------------------------------
+estimate.model <- function(df) {
+  require(forecast)
+  
+  x <- df$ret
+  my.model <- arima(x = x, 
+                    order = c(2,0,2))
+  
+  return(my.model)
+}
+
+
+#' 
+#' Now we can use the previous function with `by`.
+#' 
+## ---- tidy=FALSE---------------------------------------------------------
+# estimate a ARIMA model to each stock return
+my.l <- by(data = my.df, 
+           INDICES = my.df$ticker, 
+           FUN = estimate.model)
+
+# print coefficients
+print(sapply(X = my.l, FUN = coef))
+
+
+#' 
+#' As you can see, the result is simillar to the p
+#' 
+#' Another way of resolving the problem of several
+#' 
+## ---- tidy=FALSE---------------------------------------------------------
+library(dplyr)
+
+my.tab <- my.df %>%
   group_by(ticker) %>%
-  do(my.model = lm(data=., formula = ret ~ retSP500  ))
+  do(my.model = arima(x = .$ret, order = c(1,0,0)))
 
+print(my.tab)
 
-my.tab <- models %>%
+#' As we can see, we have a list-column called `my
+#' 
+## ---- tidy=FALSE---------------------------------------------------------
+my.model.tab <- my.df %>%
+  group_by(ticker) %>%
+  do(my.model = arima(x = .$ret, order = c(1,0,0))) %>%
+  mutate(alpha = coef(my.model)[2],
+         ar1 = coef(my.model)[1])
+
+print(my.model.tab)
+
+#' 
+#' Another trick in handling models with `dplyr` i
+#' 
+## ---- message=FALSE, tidy=FALSE------------------------------------------
+library(broom)
+
+my.coef.tab <- my.model.tab %>% 
   tidy(my.model)
 
-my.tab
+print(my.coef.tab)
 
-my.tab <- models %>% 
+#' 
+#' Notice how it also included the estimated error
+#' 
+## ---- tidy=FALSE---------------------------------------------------------
+my.info.models <- my.model.tab %>% 
   glance(my.model)
 
+print(my.info.models)
 
-my.tab
-
+#' 
+#' It includes information about coefficients and 
+#' 
+#' 
+#' ## Reporting models with `texreg`
+#' 
+#' After creating many models, the next step is to
+#' 
+#' As an example, let's use package `texreg` for r
+#' 
+## ---- tidy=FALSE, message=FALSE------------------------------------------
 library(texreg)
 
-screenreg(l = as.list(models$my.model), 
-          custom.model.names = as.character(my.tickers), 
-          custom.coef.names = c('Alpha', 'Beta'))
+est.table <- screenreg(l = my.model.tab$my.model, 
+                       custom.model.names = as.character(my.tickers), 
+                       custom.coef.names = c('Alpha', 'Beta'),
+                       digits = 3)
 
+print(est.table)
 
 #' 
+#' In the previous code, we use a list of models f
 #' 
-#' ## Reporting model results
+#' Package `texreg` offers many more options to th
+#' 
+## ---- results='asis', tidy=FALSE, echo=FALSE-----------------------------
+est.table <- texreg(l = my.model.tab$my.model, 
+                       custom.model.names = as.character(my.tickers), 
+                       custom.coef.names = c('Alpha', 'Beta'),
+                       digits = 3)
+
+print(est.table)
+
+#' 

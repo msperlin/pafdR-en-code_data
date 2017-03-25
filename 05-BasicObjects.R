@@ -11,7 +11,7 @@
 #' 
 #' ## `Numeric` objects
 #' 
-#' Objects of type `numeric` represents one or mor
+#' Objects of type `numeric` represent one or more
 #' 
 #' 
 #' ### Creating and manipulating `numeric` objects
@@ -36,7 +36,7 @@ print(x/y)
 print(x^y)
 
 #' 
-#' A big difference of R with respect to other pro
+#' A big difference between R and other programmin
 #' 
 ## ------------------------------------------------------------------------
 # set x with 4 elements and y with 2
@@ -47,7 +47,7 @@ y <- 2:1
 print(x + y)
 
 #' 
-#' In this case, the result of `x + y` is equivale
+#' Here, the result of `x + y` is equivalent to `1
 #' 
 ## ----warning=TRUE, error=TRUE--------------------------------------------
 # set x = 4 elements and y with 3
@@ -58,7 +58,7 @@ y <- c(1, 2, 3)
 print(x +y)
 
 #' 
-#' In this case, the first three elements of `x` w
+#' Here, the first three elements of `x` were summ
 #' 
 #' One great thing about R is that elements of a `
 #' 
@@ -102,7 +102,7 @@ print(my.x)
 #' 
 #' In R, you have two ways to create a sequence of
 #' 
-#' However, the use of operator `:` limits the pos
+#' However, using operator `:` limits the possibil
 #' 
 ## ------------------------------------------------------------------------
 # create sequence with seq
@@ -127,7 +127,7 @@ print(my.seq)
 #' 
 #' ### Creating vectors with repeated elements
 #' 
-#' Another way of creating `numeric` vectors is us
+#' Another way to create `numeric` vectors is usin
 #' 
 ## ------------------------------------------------------------------------
 # created a vector with repeated elements
@@ -140,7 +140,7 @@ print(my.x)
 #' 
 #' ### Creating vectors with random numbers
 #' 
-#' In some applications related to simulation, it 
+#' Some applications in finance and economics requ
 #' 
 #' Function `rnorm` generates random numbers from 
 #' 
@@ -157,7 +157,7 @@ print(my.rnd.vec)
 #' Function `runif` generates random values unifor
 #' 
 ## ------------------------------------------------------------------------
-# create a random vector with minimum and maxium
+# create a random vector with minimum and maximum
 my.rnd.vec <- runif(n = 10, min = -5, max = 5)
 
 # print it
@@ -208,16 +208,16 @@ my.rnd.vec <- sample(x = my.vec, size = 10, replace = TRUE)
 print(my.rnd.vec)
 
 #' 
-#' Another important feature of `sample` is that i
+#' Another important feature of `sample` is it wor
 #' 
 ## ------------------------------------------------------------------------
 # example of sample with characters
 print(sample(c('elem 1','elem 2','elem 3'), 1))
 
 #' 
-#' At this point, it is important to mention that 
+#' It is important to mention **the generation of 
 #' 
-#' However, you can select set place in the queue 
+#' However, you can select set the place in the qu
 #' 
 ## ------------------------------------------------------------------------
 # set seed with integer 10
@@ -236,7 +236,7 @@ print(my.rnd.vec.2)
 #' 
 #' ### Accessing the elements of a `numeric` vecto
 #' 
-#' As mentioned in previous chapter, all elements 
+#' As mentioned in the previous chapter, all eleme
 #' 
 ## ------------------------------------------------------------------------
 # set vector
@@ -277,7 +277,7 @@ print(x[c('item2','item4')])
 print(x[x > 0])
 
 #' 
-#' The selection of elements from a vector accordi
+#' The selection of elements from a vector, accord
 #' 
 #' 
 #' ### Modifying and removing elements of a `numer
@@ -508,7 +508,7 @@ print(unique(my.x))
 #' 
 #' The `character` class, or simply text class, is
 #' 
-#' R has a number of features that facilitate the 
+#' R has several features that facilitate the crea
 #' 
 ## ------------------------------------------------------------------------
 library(stringr)
@@ -517,7 +517,7 @@ library(stringr)
 #' 
 #' ### Creating a simple `character` object
 #' 
-#' in R, every `character` object is created by en
+#' In R, every `character` object is created by en
 #' 
 ## ------------------------------------------------------------------------
 my.tickers <- c('MMM', 'FB', 'ICE')
@@ -533,7 +533,7 @@ class(my.tickers)
 #' 
 #' ### Creating structured `character` objects
 #' 
-#' In some data analysis situation, it will be req
+#' In some data analysis situations, it will be re
 #' 
 #' To create a text vector with the junction of te
 #' 
@@ -606,7 +606,7 @@ print(month.name)
 #' 
 #' ### Selecting pieces of a `character` object
 #' 
-#' A common beginner's mistake  is to try to selec
+#' A common beginner's mistake  is to select piece
 #' 
 ## ------------------------------------------------------------------------
 # set char object
@@ -616,13 +616,13 @@ my.char <- 'ABCDE'
 print(my.char[2])
 
 #' 
-#' The return value `NA` indicates that the second
+#' The return value `NA` indicates the second elem
 #' 
 ## ------------------------------------------------------------------------
 print(my.char[1])
 
 #' 
-#' The result is simply the _ABCDE_ text, which is
+#' The result is simply the _ABCDE_ text, located 
 #' 
 ## ------------------------------------------------------------------------
 # print third and fourth characters with base function
@@ -634,7 +634,7 @@ my.substr <- str_sub(string = my.char, start = 3, end = 4)
 print(my.substr)
 
 #' 
-#' These functions also work for atomic vectors. F
+#' These functions also work for atomic vectors. L
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # build char vec
@@ -643,7 +643,7 @@ my.char.vec <- paste0(c('123','231','321'),
 print(my.char.vec)
 
 #' 
-#' In this case, we only want the information in t
+#' Here, we only want the information in the first
 #' 
 ## ------------------------------------------------------------------------
 # get ids with substr
@@ -654,12 +654,12 @@ print(ids.vec)
 ids.vec <- str_sub(my.char.vec, 1, 3)
 
 #' 
-#' Vector operations are very common in R. Almost 
+#' Vector operations are common in R. Almost anyth
 #' 
 #' 
 #' ### Finding and replacing pieces of text
 #' 
-#' An useful operation in handling texts is to loc
+#' A useful operation in handling texts is to loca
 #' 
 #' Before moving to the examples, it is important 
 #' 
@@ -678,7 +678,7 @@ pos <- str_locate(my.char, fixed('D'))
 print(pos)
 
 #' 
-#' Note that the `regexp` and `str_locate` returns
+#' Note the `regexp` and `str_locate` function ret
 #' 
 ## ------------------------------------------------------------------------
 # set object
@@ -694,7 +694,7 @@ print(pos)
 
 
 #' 
-#' Moving forward, to replace characters in a text
+#' To replace characters in a text, use functions 
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # set char object
@@ -733,7 +733,7 @@ my.char <- str_replace_all(string = my.char,
 print(my.char)
 
 #' 
-#' Again is worth to point out that the operations
+#' Again, it is worth pointing out that the operat
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # set char object
@@ -747,7 +747,7 @@ my.char.vec <- paste(sample(my.char, 5, replace = T),
 # show it
 print(my.char.vec)
 
-# substitute all ocurrences of 'ABC'
+# substitute all occurrences of 'ABC'
 my.char.vec <- str_replace_all(string = my.char.vec, 
                                pattern = 'ABC', 
 							   replacement = 'XXX')
@@ -797,7 +797,7 @@ split.char <- strsplit(my.char.vec, 'B')
 print(split.char)
 
 #' 
-#' Notice how an object of type `list` is returned
+#' Notice how, again, an object of type `list` is 
 #' 
 #' 
 #' ### Finding the number of characters in a text
@@ -818,6 +818,7 @@ print(str_length(my.char))
 #' And now an example with vectors.
 #' 
 ## ------------------------------------------------------------------------
+#set char
 my.char <- c('a', 'ab', 'abc')
 
 # print number of characters using nchar
@@ -832,36 +833,47 @@ print(str_length(my.char))
 #' One useful trick in R is to use functions `oute
 #' 
 ## ------------------------------------------------------------------------
+# set char vecs
 my.vec.1 <- c('a','b')
 my.vec.2 <- c('A','B')
 
+# combine in matrix
 comb.mat <- outer(my.vec.1, my.vec.2, paste,sep='-')
+
+# print it!
 print(comb.mat)
 
 #' 
-#' The output of `outer` is an object of type `mat
+#' The output of `outer` is a `matrix` type of obj
 #' 
 ## ------------------------------------------------------------------------
 print(as.character(comb.mat))
 
 #' 
-#' Another way of reaching the same objective is u
+#' Another way to reach the same objective is usin
 #' 
 ## ------------------------------------------------------------------------
+# create df with all combinations
 my.df <- expand.grid(my.vec.1, my.vec.2)
 
+# print df
+print(my.df)
+
+# paste columns together
 my.comb.vec <- paste(my.df$Var1, my.df$Var2, sep='-')
+
+# print result
 print(my.comb.vec)
 
 #' 
-#' In this case, we used function `expand.grid` to
+#' Here, we used function `expand.grid` to create 
 #' 
 #' 
 #' ### Encoding of `character` objects
 #' 
 #' Every character object in R is encoded in a par
 #' 
-#' Let's explore an example. Here we will import d
+#' Let's explore an example. Here, we will import 
 #' 
 ## ------------------------------------------------------------------------
 # read text file 
@@ -871,7 +883,7 @@ my.char <- readLines('data/FileWithLatinChar.txt')
 print(my.char)
 
 #' 
-#' The original content of the file is a text in p
+#' The original content of the file is a text in P
 #' 
 ## ---- eval=FALSE, tidy=FALSE---------------------------------------------
 ## # read text file with utf-8
@@ -881,7 +893,7 @@ print(my.char)
 #' 
 #' The output in `my.char` should now be properly 
 #' 
-#' As for objects already available in the environ
+#' As for objects available in the environment, yo
 #' 
 ## ------------------------------------------------------------------------
 # read text file
@@ -942,13 +954,13 @@ print(my.factor)
 #' 
 ## ------------------------------------------------------------------------
 # create factor with 3 levels
-my.factor <- factor(c('M','F','M','M','F','TG'))
+my.factor <- factor(c('M','F','M','M','F','ND'))
 
 # print factor
 print(my.factor)
 
 #' 
-#' In this case, we also have the `TG` (transgende
+#' Here, we also have the `ND` (not defined) group
 #' 
 #' An important point about creating factors is th
 #' 
@@ -960,7 +972,7 @@ my.status <- factor(c('Single', 'Single', 'Single'))
 print(my.status)
 
 #' 
-#' By occasion, the data in `my.status` only shows
+#' On occasion, the data in `my.status` only shows
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 my.status <- factor(c('Single', 'Single', 'Single'), 
@@ -971,7 +983,7 @@ print(my.status)
 #' 
 #' ### Modifying factors
 #' 
-#' An important point about objects of type `facto
+#' An important point about `factor` type of objec
 #' 
 ## ----warning=TRUE--------------------------------------------------------
 # set factor
@@ -1100,7 +1112,7 @@ print(my.factor)
 
 #' 
 #' 
-#' * **split** - Base on a grouping variable and a
+#' * **split** - Based on a grouping variable and 
 #' 	
 ## ------------------------------------------------------------------------
 # set factor and numeric
@@ -1121,7 +1133,7 @@ print(my.l)
 #' 
 #' ### Creating `logical` objects
 #' 
-#' In a sequence from 1 to 10, we can check what a
+#' In a sequence from 1 to 10, we can check what e
 #' 
 ## ------------------------------------------------------------------------
 # set numerical
@@ -1189,7 +1201,7 @@ print(my.x[idx])
 #' 
 #' ### Creating simple dates
 #' 
-#' In R, there are several classes that can repres
+#' In R, several classes can represent dates. The 
 #' 
 ## ------------------------------------------------------------------------
 # set Date object
@@ -1202,7 +1214,7 @@ class(my.date)
 print(my.date)
 
 #' 
-#' Notice that, in the previous example, dates are
+#' Notice, in the previous example, dates are repr
 #' 
 ## ------------------------------------------------------------------------
 # set Date from dd/mm/yyyy 
@@ -1212,7 +1224,7 @@ my.date <- as.Date('24/06/2016')
 print(my.date)
 
 #' 
-#' The date of `r my.date` is clearly wrong! To fi
+#' The date of `r my.date` is wrong! To fix this f
 #' 
 ## ------------------------------------------------------------------------
 # set Date from dd/mm/yyyy with the definition of format
@@ -1239,11 +1251,11 @@ print(my.date)
 #' 
 #' ### Creating a sequence of `Dates`
 #' 
-#' An interesting aspect of objects `Date` is that
+#' An interesting aspect of objects `Date` is they
 #' 
 ## ------------------------------------------------------------------------
 # create date
-my.date <- as.Date('24-06-2016')
+my.date <- as.Date('2016-06-24')
 
 # find next day
 my.date.2 <- my.date + 1
@@ -1252,7 +1264,7 @@ my.date.2 <- my.date + 1
 print(my.date.2)
 
 #'  
-#' This property also works with vectors, making t
+#' This property also works with vectors, facilita
 #' 
 ## ------------------------------------------------------------------------
 # create a sequence of Dates
@@ -1278,7 +1290,7 @@ my.vec.date <- seq(from = my.date.1,
 print(my.vec.date)
 
 #' 
-#' Likewise, if we wanted dates for every one mont
+#' Likewise, if we wanted a sequence of dates cont
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # set first and last Date
@@ -1294,7 +1306,7 @@ my.vec.date <- seq(from = my.date.1,
 print(my.vec.date)
 
 #' 
-#' Another way of using function `seq` is by setti
+#' Another way to use function `seq` is by setting
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # set dates
@@ -1334,7 +1346,7 @@ print(diff.date)
 print(diff.date[[1]])
 
 #' 
-#' Going further, we can test whether a date is gr
+#' Going further, we can test whether a date is mo
 #' 
 ## ------------------------------------------------------------------------
 # set date and vector
@@ -1348,7 +1360,7 @@ my.test <- my.date.vec > my.date.1
 print(my.test)
 
 #' 
-#' The previous operation is useful when you are t
+#' The previous operation is useful when trying to
 #' 
 ## ------------------------------------------------------------------------
 # set first and last dates
@@ -1378,7 +1390,7 @@ print(my.prices)
 #' 
 #' ### Dealing with time
 #' 
-#' The use of the `Date` class is sufficient when 
+#' Using the `Date` class is sufficient when deali
 #' 
 #' In R, one of the classes used for this purpose 
 #' 
@@ -1415,14 +1427,14 @@ my.timedate.tz <- as.POSIXlt('2016-01-01 16:00:00', tz = 'GMT')
 print(my.timedate.tz)
 
 #' 
-#' An important note here, in the case of `POSIXlt
+#' An important note in the case of `POSIXlt` and 
 #' 
 ## ------------------------------------------------------------------------
 # Adding values (seconds) to a POSIXlt object and printing it
 print(my.timedate.tz + 30)
 
 #' 
-#' In the same way as for objects of class `Date`,
+#' In the same way as objects of class `Date`, the
 #' 
 #' 
 #' | Symbol |           Description    | Example |
@@ -1437,7 +1449,7 @@ print(my.timedate.tz + 30)
 #' 
 #' ### Customizing the output format of dates and 
 #' 
-#' The basic notation for representing dates and d
+#' The basic notation for representing dates and `
 #' 
 #' To format a date, use the `format` function. It
 #' 
@@ -1460,7 +1472,7 @@ print(my.dates.brformat)
 # create vector of date-time
 my.datetime <- as.POSIXlt('2016-01-01 12:00:00') + seq(0,560,60)
 
-# change to brazilian format
+# change to Brazilian format
 my.dates.brformat <- format(my.datetime, '%d/%m/%Y %H:%M:%S')
 
 # print result
@@ -1616,7 +1628,7 @@ print(my.cut)
 #' 		
 #' ## Missing data - `NA` (_Not available_)
 #' 
-#' One of the main innovations of R with respect t
+#' One of the main innovations of R, with respect 
 #' 
 #' 
 #' ### Defining `NA` values
@@ -1631,7 +1643,7 @@ my.x <- c(1,2,NA, 4, 5)
 print(my.x)
 
 #' 
-#' An important property at this point is that a `
+#' An important property, at this point, is that a
 #' 
 ## ------------------------------------------------------------------------
 # example of NA interacting with other objects
@@ -1671,7 +1683,7 @@ print(idx.na)
 #' 
 ## ------------------------------------------------------------------------
 # set vector
-my.x <- c(1, NA, 3:4)
+my.x <- c(1, NA, 3:4, NA)
 
 # replace NA for 2
 my.x[is.na(my.x)] <- 2
@@ -1719,5 +1731,3 @@ my.mat[2,2] <- NA
 
 # print index with rows without NA
 print(complete.cases(my.mat))
-
-#' 

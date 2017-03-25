@@ -1,4 +1,8 @@
-#' # Data structure objects
+#' # Data structure objects {#DataStructureObjects
+#' 
+## ---- echo=FALSE---------------------------------------------------------
+my.engine <- knitr:::pandoc_to()
+
 #' 
 #' In the previous chapter, we learned about the b
 #' 
@@ -26,12 +30,12 @@ print(my.l)
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # create named list
-my.named.l <- list(ticker = 'FB', 
-				   name.company = 'Facebook',
+my.named.l <- list(ticker = 'ABC', 
+                   name.company = 'Company ABC',
                    price = c(1,1.5,2,2.3), 
                    market = 'NYSE', 
                    date.price = as.Date('2016-01-01')+0:3)
-		  
+
 # print list		  
 print(my.named.l)
 
@@ -41,7 +45,7 @@ print(my.named.l)
 #' 
 #' ### Accessing the elements of a list
 #' 
-#' As mentioned before, the elements of a `list` c
+#' As mentioned before, the individual elements of
 #' 
 ## ------------------------------------------------------------------------
 # print second element of my.l
@@ -68,7 +72,7 @@ class(my.l[2])
 my.l[2] + 1
 
 #' 
-#' An error is return because a  `list` object can
+#' An error is returned because a  `list` object c
 #' 
 ## ------------------------------------------------------------------------
 # set new list with first and second element of my.l
@@ -106,7 +110,6 @@ print(my.l[[2]][1])
 
 # access the value 'num3' in 'slot1'
 print(my.l[['slot1']]['num3'])
-print(my.l[['slot1']]$num3)
 
 #' 
 #' This operation is very useful when you are inte
@@ -114,7 +117,7 @@ print(my.l[['slot1']]$num3)
 #' 
 #' ### Adding and removing elements from a `list`
 #' 
-#' The removal, addition and replacement of elemen
+#' To add or replace elements in a `list`, just se
 #' 
 ## ------------------------------------------------------------------------
 # set list
@@ -212,7 +215,7 @@ print(my.l > 2)
 # set list with different numerical vectors.
 my.l.num <- list(c(1,2,3), 
                  seq(1:50), 
-				 seq(-5,5, by=0.5))
+                 seq(-5,5, by=0.5))
 
 #' 
 #' Let's assume that we wanted to calculate the av
@@ -251,7 +254,7 @@ print(my.mean)
 my.named.l <- list(ticker = 'XXXX4', 
                    price = c(1,1.5,2,3), 
                    market = 'Bovespa')
-				   
+
 # unlist its elements				   
 my.unlisted <- unlist(my.named.l)
 
@@ -259,9 +262,9 @@ my.unlisted <- unlist(my.named.l)
 print(my.unlisted)
 class(my.unlisted)
 
-#' 	
+#' 
 #' * **as.list** - Converts an object to the list 
-#' 	
+#' 
 ## ------------------------------------------------------------------------
 # set atomic vector
 my.x <- 10:13
@@ -274,7 +277,7 @@ print(my.x.as.list)
 
 #' 
 #' * **names** - Returns or defines the names of t
-#' 	
+#' 
 ## ------------------------------------------------------------------------
 # set named list
 my.l <- list(value1 = 1, value2 = 2, value3 = 3)
@@ -289,7 +292,7 @@ names(my.l) <- c('num1', 'num2', 'num3')
 print(my.l)
 
 #' 
-#' 	
+#' 
 #' ## `Matrix`
 #' 
 #' As you may remember from your math classes, a m
@@ -303,10 +306,10 @@ print(my.l)
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # set raw data with prices 
-raw.data <- c(40.38,  40.13,  40.49,  40.48,  40.63,
-              46.23,  46.16,  45.97,  45.56,  45.45,
-              238.58, 239.61, 234.66, 237.25, 238.91,
-              43.43,  43.95,  44.25,  44.5,   44.86)
+raw.data <- c(40.38,  40.14,  40.49,  40.48,  40.64,
+              46.23,  46.17,  45.97,  45.56,  45.46,
+              238.58, 239.61, 234.67, 237.25, 238.92,
+              43.43,  43.96,  44.26,  44.5,   44.86)
 
 # create matrix          
 my.mat <- matrix(raw.data, nrow = 5, ncol = 4)
@@ -318,9 +321,9 @@ rownames(my.mat) <- c("2010-01-04", "2010-01-05", "2010-01-06",
 print(my.mat)
 
 #' 
-#' The previous code was a very long. The registra
+#' That was a long code! But, do not worry. In pra
 #' 
-#' In the previous example, notice that, in the cr
+#' In the previous example of creating a `matrix` 
 #' 
 ## ------------------------------------------------------------------------
 # print the names of columns 
@@ -355,8 +358,8 @@ print(my.port)
 # create matrix with character
 my.mat.char <- matrix(rep(c('a','b','c'), 3), 
                       nrow = 3, 
-					  ncol = 3)
-					  
+                      ncol = 3)
+
 # print it					  
 print(my.mat.char)
 
@@ -370,7 +373,7 @@ my.mat.logical <- matrix(sample(c(TRUE,FALSE),
                                 replace = TRUE),
                          nrow = 3, 
                          ncol = 3)
-						 
+
 # print it					  
 print(my.mat.logical)
 
@@ -378,11 +381,13 @@ print(my.mat.logical)
 #' This flexibility allows the user to expand the 
 #' 
 #' 
-#' ### Selecting values in a `matrix`
+#' ### Selecting elements from a `matrix`
 #' 
 #' Following the same notation of atomic vector, y
 #' 
-#' The extra dimension of matrices requires indexi
+#' [^1]: To avoid confusion, it is worth noting th
+#' 
+#' The extra dimension of matrices requires select
 #' 
 ## ------------------------------------------------------------------------
 # create matrix
@@ -447,9 +452,9 @@ my.mat <- as.matrix(1:5)
 # print it
 print(my.mat)
 
-#'      
+#' 
 #' * **t** - Returns a transposed  `matrix`. \inde
-#' 		
+#' 
 ## ------------------------------------------------------------------------
 # set matrix
 my.mat <- matrix(seq(10,20, length.out = 6), nrow = 3)
@@ -460,7 +465,7 @@ print(my.mat)
 # transpose and print
 print(t(my.mat))
 
-#'  
+#' 
 #' * **rbind** - Returns the merger (bind) of matr
 #' 
 ## ------------------------------------------------------------------------
@@ -492,7 +497,8 @@ my.cbind.mat <- cbind(my.mat.1, my.mat.2)
 # print the result
 print(my.cbind.mat)
 
-#' 	
+#' 
+#' 
 #' ## `Dataframes`
 #' 
 #' In R, objects of type `dataframe` are the most 
@@ -511,15 +517,17 @@ ticker <- c(rep('AAP',5), rep('COG', 5), rep('BLK', 5), rep('CAM',5))
 # set a date vector
 date <- as.Date(rep(c("2010-01-04", "2010-01-05", "2010-01-06", 
                       "2010-01-07", "2010-01-08"), 4) )
-					  
+
 # set prices					  
-prices <- c(40.38,  40.13,  40.49,  40.48,  40.63,
-            46.23,  46.16,  45.97,  45.56,  45.45,
-           238.58, 239.61, 234.66, 237.25, 238.91,
-            43.43,  43.95,  44.25,  44.5,   44.86)
+prices <- c(40.38,  40.14,  40.49,  40.48,  40.64,
+            46.23,  46.17,  45.97,  45.56,  45.46,
+            238.58, 239.61, 234.67, 237.25, 238.92,
+            43.43,  43.96,  44.26,  44.5,   44.86)
 
 # create dataframe			
-my.df <- data.frame(ticker, date , prices)
+my.df <- data.frame(ticker = ticker, 
+                    date = date, 
+                    prices = prices)
 
 # print result
 print(my.df)
@@ -665,7 +673,7 @@ print(my.df.stock)
 #' We can also interact different columns using lo
 #' 
 ## ------------------------------------------------------------------------
-# set index with which.max
+# find index with which.max
 my.idx <- which.max(my.df.stock$price)
 
 # get date
@@ -683,14 +691,16 @@ print(my.date)
 # set index with which.max
 my.df <- data.frame(a=runif(5))
 
-# set columns name "MyColumn 1"
-
+# set columns name "MyColumn 1" with grave accent
 my.df$`My column 1` <- runif(5)
 
+# set columns name "MyColumn 2" with apostrophe
+my.df$'My column 2' <- runif(5)
+
 #' 
-#' In this case, we used the grave accent to encap
-#'  
-#'  
+#' In this case, we used the grave accent and apos
+#' 
+#' 
 #' ### Sorting a `dataframe`
 #' 
 #' After creating or importing a `dataframe`, you 
@@ -701,8 +711,8 @@ my.df$`My column 1` <- runif(5)
 # set new df
 my.df <- data.frame(col1 = c(4,1,2), 
                     col2 = c(1,1,3), 
-					col3 = c('a','b','c'))
-					
+                    col3 = c('a','b','c'))
+
 # print it					
 print(my.df)
 
@@ -756,27 +766,36 @@ print(my.df)
 #' 
 #' Notice that, in the previous example, the names
 #' 
-## ---- error=TRUE---------------------------------------------------------
-# set two df with different colnames
-my.df.1 <- data.frame(col1 = 1:5, col2 = rep('a', 5))
-my.df.2 <- data.frame(col1 = 6:10, col3 = rep('b', 5))
+## ---- error=TRUE, eval=FALSE, tidy=FALSE---------------------------------
+## # set two df with different colnames
+## my.df.1 <- data.frame(col1 = 1:5,
+##                       col2 = rep('a', 5))
+## my.df.2 <- data.frame(col1 = 6:10,
+##                       col3 = rep('b', 5))
+## 
+## # bind them by rows (ERROR)
+## my.df <- rbind(my.df.1, my.df.2)
 
-# bind them by rows (ERROR)
-my.df <- rbind(my.df.1, my.df.2)
+#' 
+## ---- echo=FALSE---------------------------------------------------------
+cat('##Error in match.names(clabs, names(xi)) :\n names do not match previous names')
 
 #' 
 #' In the case where you got various `dataframes` 
 #' 
-## ------------------------------------------------------------------------
+## ---- message=FALSE, tidy=FALSE------------------------------------------
 # load package
 library(dplyr)
 
 # set two dfs (names don't match perfectly)
-my.df.1 <- data.frame(col1 = 1:5, col2 = rep('a', 5))
-my.df.2 <- data.frame(col1 = 6:10, col3 = rep('b', 5))
+my.df.1 <- data.frame(col1 = 1:5,
+                      col2 = rep('a', 5))
+my.df.2 <- data.frame(col1 = 6:10, 
+                      col3 = rep('b', 5))
 
 # bind them by rows
-my.df <- bind_rows(my.df.1, my.df.2)
+my.df <- bind_rows(my.df.1, 
+                   my.df.2)
 
 # print result (NAs where there should be a column)
 print(my.df)
@@ -818,7 +837,7 @@ print(my.df)
 # set dfs
 my.df.1 <- data.frame(date = as.Date('2016-01-01')+0:10, 
                       x = 1:11)
-					 
+
 my.df.2 <- data.frame(date = as.Date('2016-01-05')+0:10,
                       y = seq(20,30, length.out = 11))
 
@@ -829,7 +848,186 @@ my.df <- merge(my.df.1, my.df.2, by = 'date')
 print(my.df)
 
 #' 
-#' From the result you see that the resulting `dat
+#' From the result we can see that the resulting `
+#' 
+#' 
+#' ### Reporting a `dataframe` table using `xtable
+#' 
+#' Objects of type `dataframe` can be used to repr
+#' 
+#' Another way, a bit more elaborate, is to remove
+#' 
+## ---- tidy=FALSE---------------------------------------------------------
+library(xtable)
+
+# set number of rows in table
+N = 10
+
+# set table
+my.table <- data.frame('Stocks' = paste('Stock',1:N),
+                       'Mean Return' = rnorm(N),
+                       'StDev. of Ret' = abs(runif(N)),
+                       'Max. Return' = abs(runif(N)),
+                       'Min. Return' = abs(runif(N)), 
+                       check.names = F)
+
+# set xtable object
+my.xtable <- xtable(x = my.table, 
+                    label = 'tab:DescRetStats',
+                    caption = 'Descriptive Return Statistics')
+
+# print output to latex file
+my.f.tex <- 'tabs/MyTable.tex'
+print(my.xtable,
+      include.rownames = FALSE,
+      file = my.f.tex,
+      type='latex')
+
+#' 
+#' In the previous code, notice how we used column
+#' 
+## ----echo=FALSE, results='asis'------------------------------------------
+print(my.xtable, 
+      include.rownames = FALSE,
+      comment = FALSE, 
+      size = 'small')
+
+#' 
+#' Another interesting package that is worth menti
+#' 
+## ---- tidy=FALSE, results='asis', message=FALSE--------------------------
+library(stargazer)
+
+stargazer(my.table, 
+          summary = FALSE, 
+          title = 'Descriptive Returns Statistics', 
+          type = 'latex', 
+          style = 'qje', 
+          font.size = 'footnotesize', 
+          rownames = FALSE, 
+          out.header = FALSE,
+          header = FALSE,
+          label = 'tab:DescRetStats_stargazer' )
+
+
+#' 
+#' As for exporting tables to Word (Microsoft) or 
+#' 
+## ------------------------------------------------------------------------
+# set html file for output
+my.f.html <- 'tabs/MyTable.html'
+
+# write it!
+print(x = my.xtable,
+      file = my.f.html,
+      type = 'html',
+      include.rownames = FALSE )
+
+#' 
+#' Once the file is available, we can open `r my.f
+#' 
+#' 
+#' If you find yourself dealing with lots of figur
+#' 
+#' 
+#' ### The format of the `dataframe` (_long_ and _
+#' 
+#' After understanding the basics of `dataframe` m
+#' 
+#' In the **wide format**, the rows are usually in
+#' 	
+#' | refdate    | STOCK1| STOCK2| STOCK3|
+#' |:----------:|:-----:|:-----:|:-----:|
+#' | 2015-01-01 | 10    | 3     | 6     |
+#' | 2015-01-02 | 11    | 3.1   | 7     |
+#' | 2015-01-03 | 10.5  | 3.2   | 7.5   |
+#' | 2015-01-04 | 12    | 3.5   | 6     |
+#' | ...        | ...   | ...   | ...   |
+#' 
+#' Note that the above table has three distinct in
+#' 
+#' In the **long format**, each row of the `datafr
+#' 
+#' | refdate    | asset.code | Price |
+#' |:----------:|:----------:|:-----:|
+#' | 2015-01-01 | STOCK1     | 10    |
+#' | 2015-01-01 | STOCK2     | 3     |
+#' | 2015-01-01 | STOCK3     | 6     |
+#' | 2015-01-02 | STOCK1     | 11    |
+#' | 2015-01-02 | STOCK2     | 3.1   |
+#' | 2015-01-02 | STOCK3     | 7     |
+#' | 2015-01-03 | STOCK1     | 10.5  |
+#' | 2015-01-03 | STOCK2     | 3.2   |
+#' | 2015-01-03 | STOCK3     | 7.5   |
+#' | ...        | ...        | ...   |
+#' 
+#' At first glance, this argument may seem trivial
+#' 
+#' In finance, the wide format is generally used i
+#' 
+#' 
+#' #### Converting a `dataframe` structure (long a
+#' 
+#' The conversion from one format to the other is 
+#' 
+## ---- tidy=FALSE---------------------------------------------------------
+library(tidyr)
+
+# set dates and stock vectors
+refdate <- as.Date('2015-01-01') + 0:3
+STOCK1 <- c(10, 11, 10.5, 12)
+STOCK2 <- c(3, 3.1, 3.2, 3.5)
+STOCK3 <- c(6, 7, 7.5, 6)
+
+# create wide dataframe
+my.df.wide <- data.frame(refdate, STOCK1, STOCK2, STOCK3)
+
+# convert wide to long
+my.df.long <- gather(data = my.df.wide,
+                     key = 'ticker',
+                     value = 'price',
+                     - refdate)
+
+# print result
+print(my.df.long)
+
+#' 
+#' To perform the reverse conversion, _long_ to _w
+#' 
+## ---- tidy=FALSE---------------------------------------------------------
+# convert from long to wide
+my.df.wide.converted <- spread(data = my.df.long, 
+                               key = 'ticker',
+							   value = 'price')
+							   
+# print result
+print(my.df.wide.converted)
+
+#' 
+#' In the case of more complex conversions, where 
+#' 
+## ---- tidy=FALSE---------------------------------------------------------
+library(reshape2)
+
+# use melt to change from wide to long
+my.df.long <- melt(data = my.df.wide, 
+				   id.vars = 'refdate', 
+				   variable.name = 'ticker', 
+				   value.name = 'price')
+
+# print result				   
+print(my.df.long)
+
+#' 
+## ------------------------------------------------------------------------
+# use melt to change from long to wide
+my.df.wide.converted <- dcast(data = my.df.long, 
+                              formula = refdate ~ ticker, 
+							  value.var = 'price')
+print(my.df.wide.converted)
+
+#' 
+#' It is important to know these functions when wo
 #' 
 #' 
 #' ### Extensions of the `dataframe` class
@@ -850,13 +1048,13 @@ ticker <- c('AAP', 'COG', 'BLK', 'CAM')
 # set a date vector
 date <- as.Date(c("2010-01-04", "2010-01-05", "2010-01-06", 
                   "2010-01-07", "2010-01-08"))
-					  
+
 # set prices as  matrix					  
 price.mat <- matrix(c(40.38,  40.13,  40.49,  40.48,  40.63,
                       46.23,  46.16,  45.97,  45.56,  45.45,
-			          238.58, 239.61, 234.66, 237.25, 238.91,
-				      43.43,  43.95,  44.25,  44.5,   44.86),
-				     nrow = length(date))
+                      238.58, 239.61, 234.66, 237.25, 238.91,
+                      43.43,  43.95,  44.25,  44.5,   44.86),
+                    nrow = length(date))
 
 # set xts object
 my.xts <- xts(price.mat, order.by = date)

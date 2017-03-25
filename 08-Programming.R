@@ -1,12 +1,10 @@
 ## ---- echo=FALSE---------------------------------------------------------
-knitr::opts_chunk$set(prompt = FALSE, cache = FALSE, tidy=TRUE)
+knitr::opts_chunk$set(prompt = FALSE, cache = FALSE, tidy=FALSE)
 
 #' 
 #' # Programming and data analysis with R
 #' 
-#' In the previous chapters, we learned the ecosys
-#' 
-#' The concepts presented here are extremely valua
+#' In the previous chapters we learned the ecosyst
 #' 
 #' 
 #' ## Creating Functions
@@ -33,6 +31,8 @@ knitr::opts_chunk$set(prompt = FALSE, cache = FALSE, tidy=TRUE)
 #' 
 #' The definition of a function is very similar to
 #' 
+#' The use of the equality symbol in this setting,
+#' 
 #' Every function will return an object with the `
 #' 
 #' As for using the function, you'll need first to
@@ -58,7 +58,10 @@ my.fct <- function(x = c(1,1,1,1)){
 #' 
 #' Notice how we set a comment section after the f
 #' 
-#' Functions should contain a comments section imm
+#' > "Functions should contain a comments section 
+#' "
+#' >
+#' > --- Google's R style manual
 #' 
 #' After writing the function down, we need to exe
 #' 
@@ -87,8 +90,6 @@ print(my.mean)
 #' Again, as expected, the returned value is corre
 #' 
 #' Although simple, the previous example can be fu
-#' 
-#' **By not testing the types of inputs in the fun
 #' 
 #' Correcting this problem is quite simple: just u
 #' 
@@ -171,11 +172,7 @@ print(my.fct(y))
 #' 
 #' Now, lets move to a more complete example of us
 #' 
-#' 
-#' 
-#' Notice that the calculation of returns must be 
-#' 
-#' To solve it, let's create a generic function th
+#' Let's create a generic function that, takes as 
 #' 
 #' First, let's register a function for calculatin
 #' 
@@ -199,14 +196,16 @@ calc.ret <- function(P) {
 #' 
 #' Notice how we kept it simple. Since we will use
 #' 
+#' Now, lets set a function that, using a `datafra
+#' 
 #' 
 ## ---- tidy = FALSE-------------------------------------------------------
 df.calc.ret <- function(df.in, colname.price, colname.tickers){
   # Calculates an arithmetic return series and adds it to input
   #
   # Args:
-  # 	df.in - a dataframe with columns for prices and tickers
-  #	colname.price -  the name of the column in input df.in with prices
+  #   df.in - a dataframe with columns for prices and tickers
+  #	  colname.price -  the name of the column in input df.in with prices
   #   colname.tickers - the name of the column with tickers
   #
   # Returns:
@@ -271,7 +270,7 @@ my.df <- df.calc.ret(my.df,
 #' Let's have a look at the result:
 #' 
 ## ------------------------------------------------------------------------
-#print(str(my.df, max.level = 1))
+print(head(my.df))
 
 #' 
 #' It looks great! The return vector is available 
@@ -281,10 +280,11 @@ idx <- complete.cases(my.df)
 my.df <- my.df[idx, ]
 
 #' 
-#' For last, we save the resulting dataset as a .R
+#' For last, we save the resulting dataset as a _.
 #' 
 ## ------------------------------------------------------------------------
-save(list = 'my.df', file = 'data/SP500-Stocks-WithRet.RData')
+save(list = 'my.df', 
+     file = 'data/SP500-Stocks-WithRet.RData')
 
 #' 
 #' 
@@ -314,7 +314,7 @@ for (i in my.seq){
 }
 
 #' 
-#' In the previous example, we created a sequence 
+#' In the code we created a sequence from -5 to 5 
 #' 
 #' The iterated sequence in the _loop_ is not excl
 #' 
@@ -384,7 +384,7 @@ for (i in seq(1,nrow(my.mat))){
 # set number of files to create
 n.files <- 10
 
-# set first part of file names
+# set first part of saved files
 pattern.name <- 'myfiles_'
 
 # set dir
@@ -440,8 +440,6 @@ print(head(df.agg))
 #' 
 #' In the previous code, notice how we bind all `d
 #' 
-#' Looking at the contents of `df.agg`, we can see
-#' 
 #' Another practical example of the use _loop_ is 
 #' 
 #' 
@@ -476,9 +474,9 @@ print(tab.out[1:10, ])
 #' In the code, we used function `unique` to find 
 #' 
 #' 
-#' ## Conditional statements (if)
+#' ## Conditional statements (`if`, `else`, `switc
 #' 
-#' It is very common in R script to make decisions
+#' Make decisions of type if this is true do this,
 #' 
 ## ----eval=FALSE----------------------------------------------------------
 ## # skeleton for if statement
@@ -523,6 +521,46 @@ for (i in my.x){
 }
 
 #' 
+#' Another possibility for using conditional execu
+#' 
+## ------------------------------------------------------------------------
+# set vec
+my.vec <- c('A', 'D', 'B', 'A', 'C', 'B')
+
+for (i.vec in my.vec){
+  if (i.vec == 'A'){
+    cat('\nGot an A!')
+  } else if (i.vec == 'B') {
+    cat('\nGot a B!')
+  } else if (i.vec == 'C') {
+    cat('\nGot a C!')
+  } else if (i.vec == 'D') {
+    cat('\nGot a B!')	
+  }
+}
+
+#' 
+#' While it would do what we need, the use of seve
+#' 
+#' 
+## ------------------------------------------------------------------------
+# set vec
+my.vec <- c('A', 'D', 'B', 'A', 'C', 'B')
+
+for (i.vec in my.vec){
+  msg.out <- switch(i.vec, 
+                  'A' = '\nGot an A!',
+                  'B' = '\nGot a B!',
+                  'C' = '\nGot a C!',
+                  'D' = '\nGot a D!')
+  
+  cat(msg.out)
+  
+}
+
+#' 
+#' The benefit of using `switch` is that the code 
+#' 
 #' 
 #' ## Using `apply` functions
 #' 
@@ -531,6 +569,7 @@ for (i in my.x){
 #' It is noteworthy to point out that all procedur
 #' 
 #' Now, lets discuss each type of _apply_ function
+#' 
 #' 
 #' ### Using the `lapply` function
 #' 
@@ -578,8 +617,8 @@ create.rnd.file <- function(name.file, N=100){
     stop('ERROR: input name.file is not a character')
   }
   
-  if (class(N)!='numeric'){
-    stop('ERROR: input N is not an integer!')
+  if ( !(class(N) %in% c('numeric','integer')) ){
+    stop('ERROR: input N is not an integer or numeric!')
   }
   
   # create random df
@@ -621,7 +660,6 @@ print(out.l)
 #' 
 #' 
 #' Everything worked well in the previous code. Th
-#' 
 #' 
 #' 
 #' ### Using the `sapply` function
@@ -769,9 +807,10 @@ my.tab <- do.call(what = rbind, args = my.l.out)
 print(head(my.tab))
 
 #' 
-#' This is the first appearance of function `do.ca
+#' This is the first appearance of `do.call`. This
 #' 
 #' Going back to the example, we can see that the 
+#' 
 #' 
 #' ### Using the `mapply` function
 #' 
@@ -836,34 +875,74 @@ print(apply(X = my.mat, MARGIN = 1, FUN = max))
 print(apply(X = my.mat, MARGIN = 2, FUN = max))
 
 #' 
+#' ### Using the `by` function
+#' 
+#' Function `by` has the same objective as the oth
+#' 
+#' Have a look in the next example, where we creat
+#' 
+#' 
+## ------------------------------------------------------------------------
+# load data 
+load('data/SP500-Stocks-WithRet.RData')
+
+# set function for processing df
+my.fct <- function(df.in){
+  
+  P <- df.in$price.adjusted
+  ret <- df.in$ret
+  
+  out <- c(MeanPrice= mean(P),
+           MaxPrice = max(P),
+           MinPrice = min(P),
+           MeanRet = mean(ret),
+           MaxRet = max(ret),
+           MinRet = min(ret))
+  
+  return(out)
+  
+}
+
+# apply my.fct for each ticker in my.df
+my.l <- by(data = my.df, INDICES = my.df$ticker, FUN = my.fct)
+
+# convert list to dataframe
+my.tab <- do.call(what = rbind, args = my.l)
+
+# print result
+print(head(my.tab))
+
+
+#' 
+#' Function  `my.fct` needed to be created for usi
+#' 
 #' 
 #' ## Data manipulation with package `dplyr`
 #' 
 #' One of the most important asset of an experienc
 #' 
-#' For example, the previous operation of averagin
+#' For example, the previous operation of describi
 #' 
 ## ------------------------------------------------------------------------
 library('dplyr')
 
 #' 
-#' The loading screen of `dplyr` shows several mes
 #' 
+#' The loading screen of `dplyr` warns the user th
 #' 
-#' In its current version `r my.ver`, `dplyr` has 
 #' 
 #' ### Manipulating a `dataframe` with `dplyr`
 #' 
-#' Package `dplyr` also includes several functions
+#' Package `dplyr` includes several functions for 
 #' 
 #' If you want to select columns, you can use func
-#' 
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 library(dplyr)
 
 # set rnd df
-N <- 10
+set.seed(10)
+N <- 5
 my.df <- data.frame(COL1 = runif(N), 
                     COL2 = runif(N), 
                     G = runif(N),
@@ -885,6 +964,7 @@ print(my.temp.df)
 my.temp.df <- select(my.df, starts_with('COL'))
 print(my.temp.df)
 
+#' 
 #' This possibility is particularly interesting wh
 #' 
 #' For indexing (or filtering) rows, we use functi
@@ -895,17 +975,17 @@ my.temp.df. <- filter(my.df, COL1 > 0.25)
 print(my.temp.df)
 
 # filter rows with filter() - two condition
-my.temp.df <- filter(my.df, COL1 > 0.25, COL2 < 0.75)
+my.temp.df <- filter(my.df, COL1 > 0.25, 
+                            COL2 < 0.75)
 print(my.temp.df)
 
-#' 
 #' 
 #' We can add columns to a `dataframe` using `muta
 #' 
 ## ------------------------------------------------------------------------
 # add new columns with mutate
 my.temp.df <- mutate(my.df, COL3 = COL1 + COL2,
-                     COL4 = COL3 + runif(N) )
+                            COL4 = COL3 + runif(N) )
 
 my.temp.df <- arrange(my.temp.df, COL1)
 # print result
@@ -917,7 +997,7 @@ print(my.temp.df)
 #' 
 #' ### The pipeline operator `%>%`
 #' 
-#' Another innovation of package `dplyr` is the _p
+#' An important feature of package `dplyr` is the 
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # example of using the pipeline operator
@@ -931,35 +1011,35 @@ my.temp.df.pipeline <- my.df %>%
 print(my.temp.df.pipeline)
 
 #' 
-#' The resulting code produces the same results as
+#' In the code, we use the symbol ` %>%` in the en
 #' 
 #' 
-#' ### Simple group operations with `group_by` and
+#' ### Simple group operations with `dplyr`
 #' 
 #' To illustrate the use of the functions `group_b
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 library(dplyr)
 
-# set and read data file
-my.f <- 'data/SP500-Stocks_long.csv'
-my.df <- read.csv(my.f,colClasses = c('numeric', 'Date','factor'))
+# load data 
+load('data/SP500-Stocks-WithRet.RData')
 
-# group data by ticker
-my.G <- group_by(my.df, ticker)
-
-# calculate stats
-my.tab <- summarise(my.G, mean.price = mean(price.adjusted), 
-                    max.price = max(price.adjusted), 
-                    min.price = min(price.adjusted))
+# group data and calculate stats
+my.tab <- my.df %>%
+          group_by(ticker) %>%
+          summarise(mean.price = mean(price.adjusted), 
+		            max.price = max(price.adjusted), 
+					min.price = min(price.adjusted),
+					max.ret = max(ret),
+					min.ret = min(ret))
 
 # print result						  
 print(my.tab)
 
 #' 
-#' The first step in using  `dplyr` is to group th
+#' Explaining it, the first step in using  `dplyr`
 #' 
-#' After we group the data in `my.G`, we feed this
+#' After we group the data, we feed this object to
 #' 
 #' The use of `dplyr` is highly recommended when y
 #' 
@@ -974,13 +1054,14 @@ print(head(my.df$week.day))
 #' Now we proceed by adding column `week.day` in `
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
-# group by ticker and weekday
-my.G <- group_by(my.df, ticker, week.day)
-
-# calculate stats
-my.tab <- summarise(my.G, mean.price = mean(price.adjusted), 
-                    max.price = max(price.adjusted), 
-                    min.price = min(price.adjusted))
+# group by ticker and weekday, calculate stats
+my.tab <- my.df %>%
+          group_by(ticker, week.day) %>%
+          summarise(mean.price = mean(price.adjusted), 
+		            max.price = max(price.adjusted), 
+					min.price = min(price.adjusted),
+					max.ret = max(ret),
+					min.ret = min(ret))
 
 # print result						  
 print(my.tab)
@@ -988,31 +1069,24 @@ print(my.tab)
 #' 
 #' And that's it! In order to group the data to a 
 #' 
-#' We can further refine the code using pipelines.
-#' 
-## ---- tidy=FALSE---------------------------------------------------------
-# example of using the pipeline operator
-my.tab <- my.df %>% 
-  group_by(ticker, week.day) %>% 
-  summarise(mean.price = mean(price.adjusted),
-            max.price = max(price.adjusted),
-            min.price = min(price.adjusted))
-
-print(my.tab)
-
+#' Using `dplyr` to do simple group calculations i
 #' 
 #' 
-#' ### Complex group operations with `group_by` an
-#' 
+#' ### Complex group operations with `dplyr`
 #' 
 #' The previous example shows a simple case of gro
+#' 
+#' Package `dplyr` also supports more complex oper
 #' 
 #' Let have a look in the following example, where
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 library(dplyr)
+
+# load data
 load('data/SP500-Stocks-WithRet.RData')
 
+# get acum ret of stoks
 my.tab <- my.df %>%
   group_by(ticker) %>%
   do(acum.ret = cumprod(1+.$ret)) %>%

@@ -88,6 +88,8 @@
 #' Again, we emphasize that the _scripts_ of each 
 #' 
 #' 
+## ----child = '/Scripts/ResearchScript-InvestPerformance.Rmd'-------------
+
 #' ### Analyzing the performance of international 
 #' 
 #' One of the most popular topics in Finance is th
@@ -95,131 +97,40 @@
 #' The main interest in research proposal here is 
 #' 
 #' 
-#' investments that are part of two types of marke
 #' 
-#' * IBOV - broad index of the Brazilian stock mar
+#' #### Importing the data
 #' 
-#' * PETR4 - Preferred shares of Petrobras company
 #' 
-#' * NTN-B Principal 150824 - Title of federal deb
-#' 
-#' * CDI - interest rate in the banking market, ge
-#' 
-#' From these data, the performance analysis will 
-#' 
-#' We can arrange the stages of research as:
-#' 
-#' 1. Download the price data or daily of each ins
-#' 2. Add these data in one _dataframe_.
-#' 3. Process _dataframe_ with the prices in order
-#' 
-#' This research _script_ will need to install the
-#' 
-## ---- eval=FALSE, tidy=FALSE---------------------------------------------
-## install.packages(c('BatchGetSymbols',
-## 				   'GetTDData',
-## 				   'dplyr',
-## 				   'Quandl',
-## 				   'ggplot2'))
+## ---- eval=FALSE, message=FALSE, tidy=FALSE------------------------------
+## library(BatchGetSymbols)
+## 
+## my.f <- 'data/InternationalStockIndices.csv'
+## df.indices <- read.csv(my.f)
+## 
+## my.tickers <- df.indices$ticker
+## 
+## first.date = as.Date('2008-01-01')
+## last.date = as.Date('2016-12-31')
+## 
+## my.l <- BatchGetSymbols(tickers = my.tickers,
+##                         first.date = first.date,
+##                         last.date = last.date)
+## 
+## my.df <- my.l$df.tickers[, c('price.adjusted','ref.date','ticker')]
+## colnames(my.df) <- c('price','ref.date','ticker')
 
 #' 
-#' Remember also that access to `Quandl` packet da
+## ---- echo=FALSE---------------------------------------------------------
+load('../data/AdjustedPrices-InternacionalIndices.RDATA')
+
 #' 
-#' 
-#' #### Importing data from the Brazilian stock ma
-#' 
-#' The Bovespa data can be directly downloaded fro
-#' 
-## ---- message=FALSE, tidy=FALSE------------------------------------------
-library(BatchGetSymbols)
-
-my.f <- 'data/InternationalStockIndices.csv'
-df.indices <- read.csv(my.f)
-
-my.tickers <- df.indices$ticker
-
-first.date = as.Date('2008-01-01')
-last.date = as.Date('2016-12-31')
-
-my.l <- BatchGetSymbols(tickers = my.tickers,
-                        first.date = first.date,
-                        last.date = last.date)
-
-
 #' 
 #' After importing, you should check that everythi
 #' 
-## ------------------------------------------------------------------------
-print(my.l$df.control)
-
-#' 
-#' As can be seen, the data was downloaded correct
-#' 
-## ------------------------------------------------------------------------
-print(head(my.l$df.tickers))
-
-#' 
-#' Note that the _dataframe_ has several informati
-#' 
-## ------------------------------------------------------------------------
-df.stocks <- my.l$df.tickers[, c('price.adjusted','ref.date','ticker')]
-colnames(df.stocks) <- c('price','ref.date','ticker')
-
-#' 
-#' After this last step, we have in hand a _datafr
-#' 
-## ------------------------------------------------------------------------
-print(str(df.stocks))
-
 #' 
 #' An important observation in this stage is that 
 #' 
 #' 
-#' #### CDI Importing data
-#' 
-#' The last step in the import data is to seek inf
-#' 
-#' 
-## ---- eval=FALSE---------------------------------------------------------
-## library (Quandl)
-## 
-## my.key <- 'YOUR_API_HERE'
-
-#' 
-#' Note that you should use your own key, replacin
-#' 
-## ---- tidy=FALSE---------------------------------------------------------
-Quandl.api_key(my.key)
-
-quandl.codes <- c('BCB/4389')
-
-df.CDI <- Quandl(quandl.codes,
-                 type='raw', 
-                 start_date = first.date,
-				 end_date = last.date)
-
-
-#' 
-#' Again, we see the imported information:
-#' 
-## ------------------------------------------------------------------------
-print(str(df.CDI))
-
-#' 
-#' 
-#' #### Aggregating data
-#' 
-#' Since, for each type of data, the columns were 
-#' 
-## ------------------------------------------------------------------------
-my.df <- rbind(df.stocks)
-
-#' 
-#' Checks the result with the `str`:
-#' 
-## ------------------------------------------------------------------------
-print(str(my.df))
-
 #' 
 #' That last part ends the cleaning step and struc
 #' 
@@ -324,7 +235,10 @@ print(p)
 #' 
 #' In relation to the built _script_, it is emphas
 #' 
+
 #' 
+## ----child = '/Scripts/ResearchScript-ARIMA.Rmd'-------------------------
+
 #' ### What is the best model ARIMA for financial 
 #' 
 #' It is quite popular that it study the possibili
@@ -427,8 +341,10 @@ print(my.result)
 #' It appears in the table above, approximately 50
 #' 
 #' A note is important here. In this research, we 
+
 #' 
-#' 
+## ----child = '/Scripts/ResearchScript-GetHFData.Rmd'---------------------
+
 #' ### The intraday liquidity of the Brazilian sto
 #' 
 #' The third and final example of research will ac
@@ -519,3 +435,5 @@ print(p)
 #' The figure above shows the number of transactio
 #' 
 #' The meeting _U_ format for intraday liquidity i
+
+#' 
