@@ -150,6 +150,8 @@ print(50:100)
 #' 
 #' After pasting all the commands in the editor, s
 #' 
+#' ### RStudio shortcuts
+#' 
 #' In RStudio, there are some predefined and time-
 #' 
 #' 
@@ -234,7 +236,7 @@ print(z)
 #' 
 #' ## Creating Vectors
 #' 
-#' In the previous examples, we have created simpl
+#' In the previous examples, we created simple obj
 #' 
 #' One of the most used procedures in R is the cre
 #' 
@@ -276,7 +278,7 @@ class(x)
 
 #' 
 #' 
-#' ## Knowing Your Environment
+#' ## Knowing Your Environment and Objects
 #' 
 #' After using various commands, further developme
 #' 
@@ -371,7 +373,7 @@ my.text <- 'A->\t<-B'
 cat(my.text)
 
 #' 
-#' We’ve only scratched the surface on the possibl
+#' Weâ€™ve only scratched the surface on the possibl
 #' 
 #' 
 #' ### Customizing the Output
@@ -653,13 +655,18 @@ ls()
 #' 
 #' To show the current working directory, use func
 #' 
-## ----tidy=TRUE-----------------------------------------------------------
-# get current dir 
-my.dir <- getwd()
+## ----eval=FALSE----------------------------------------------------------
+## # get current dir
+## my.dir <- getwd()
+## 
+## # display it
+## print(my.dir)
 
-# display it
-print(my.dir)
+#' 
+## ----echo=FALSE----------------------------------------------------------
+cat("C:/Dropbox/My Books/pafdR (en)/Book Content")
 
+#' 
 #' 
 #' The result of the previous code shows the folde
 #' 
@@ -707,7 +714,7 @@ print(my.dir)
 ## setwd('..')
 
 #' 
-#' So, if you are working in the directory `C:/My 
+#' So, if you are working in directory `C:/My Rese
 #' 
 #' Another, more modern, way of setting the direct
 #' 
@@ -835,8 +842,6 @@ x <- 'abc' # this is an inline comment
 #' 
 #' The complete list of packages available on CRAN
 #' 
-#' Another important source for finding packages i
-#' 
 #' 
 #' Unlike CRAN, R-Forge and Github have no restric
 #' 
@@ -953,7 +958,7 @@ fortunes::fortune(10)
 #' 
 #' ### Upgrading Packages
 #' 
-#' Over time, it is natural that the packages avai
+#' Over time, it is natural that packages availabl
 #' 
 #' 
 #' The user can also update packages through the p
@@ -984,8 +989,6 @@ fortunes::fortune(10)
 #' The use of autocomplete is also possible for fi
 #' 
 #' 
-#' By using _tab_ inside of a function, we have th
-#' 
 #' Summing up, using code completion will make you
 #' 
 #' 
@@ -1004,7 +1007,7 @@ my.f <- list.files(path = "data", full.names = TRUE)
 print(my.f)
 
 #' 
-#' Note that in this directory, there are several 
+#' There are several files with different extensio
 #' 
 ## ----eval=FALSE----------------------------------------------------------
 ## # list all files for all subfolders (IT MAY TAKE SOME TIME...)

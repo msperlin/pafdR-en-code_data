@@ -207,7 +207,7 @@ df.sp500 <- read.csv(file = 'data/SP500.csv',
 # calculate return
 df.sp500$ret <- calc.ret(df.sp500$price)
 
-# print datasets
+# print number of rows in datasets
 print(nrow(my.df.asset))
 print(nrow(df.sp500))
 
@@ -994,6 +994,16 @@ print(my.garch.forecast)
 ## install.packages("fMarkovSwitching",
 ##                  repos="http://R-Forge.R-project.org")
 
+#' 
+## ---- echo=FALSE---------------------------------------------------------
+
+if (!require('fMarkovSwitching')){
+  install.packages("fMarkovSwitching", 
+                 repos="http://R-Forge.R-project.org")
+}
+
+
+#' 
 #' 
 #' Once it is installed, let's look at its functio
 #' 

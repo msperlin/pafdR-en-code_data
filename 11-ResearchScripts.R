@@ -59,7 +59,7 @@
 ## # Output:
 ## #   Figure in folder fig, tables in folder table
 ## #
-## # Author: Mr R programmer
+## # Author: Mr R Enthusiast
 ## # Date: 01/01/2017
 ## 
 ## 
@@ -84,12 +84,8 @@
 ## sapply(my.R.files,source)
 ## 
 ## # run all steps of research
-## my.R.files <- list.files(path='',
-## 						 pattern = '*.R',
-## 						 full.names=TRUE)
-## 						
-## # source all main scripts
-## sapply(my.R.files,source)
+## source('1-import-and-clean-data.R')
+## source('2-run-research.R')
 
 #' 
 #' Notice that to run the above code on another co
@@ -102,7 +98,7 @@
 #' The first example of research is the analysis o
 #' 
 #' 
-## ----child = '/Scripts/ResearchScript-InvestPerformance.Rmd'-------------
+## ----child = 'Scripts/ResearchScript-InvestPerformance.Rmd'--------------
 
 #' ### The performance of international investment
 #' 
@@ -470,7 +466,7 @@ tailoredFrontierPlot(object = my.pf,
 #' The written code in this research is reproducib
 
 #' 
-## ----child = '/Scripts/ResearchScript-prophet.Rmd'-----------------------
+## ----child = 'Scripts/ResearchScript-prophet.Rmd'------------------------
 
 #' ### Can we predict stock's returns with Prophet
 #' 
@@ -479,7 +475,7 @@ tailoredFrontierPlot(object = my.pf,
 #' 
 #' > "It's not your traditional ARIMA-style time s
 #' >
-#' > --- Facebook Core Data Science team
+#' > --- Facebook Core Data Science team, 2017
 #' 
 #' Given its open source format, the prophet algor
 #' 
@@ -791,7 +787,7 @@ print(p)
 #' In line with the previous example of research s
 
 #' 
-## ----child = '/Scripts/ResearchScript-GetHFData.Rmd'---------------------
+## ----child = 'Scripts/ResearchScript-GetHFData.Rmd'----------------------
 
 #' ### An Analysis of High Frequency trade Data {#
 #' 
@@ -938,7 +934,7 @@ df.out.raw <- ghfd_get_HF_data(my.assets = my.assets,
 #' 
 #' > "The medRV belongs to the class of realized v
 #' >
-#' > --- Help file for `highfrequency::medRV`
+#' > --- Help file for `highfrequency::medRV`, 201
 #' 
 #' Further inspection in the usage of `medRV` show
 #' 

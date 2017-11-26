@@ -7,7 +7,7 @@
 #' In most cases, the importation of financial dat
 #' 
 #' 
-#' ### Package `quantmod`
+#' ### Package `quantmod` 
 #' 
 #' To import daily trade data of stocks, one of th
 #' 
@@ -272,6 +272,8 @@ my.df <- ghfd_get_HF_data(my.assets = my.ticker,
                           type.market = 'equity',
                           first.date = last.date,
                           last.date = last.date,
+                          first.time = '10:00:00',
+                          last.time = '17:00:00',
                           type.output = 'agg',
                           agg.diff = '5 min')
 
@@ -300,6 +302,8 @@ my.df <- ghfd_get_HF_data(my.assets = my.ticker,
                           type.market = 'equity',
                           first.date = last.date,
                           last.date = last.date,
+                          first.time = '10:00:00',
+                          last.time = '17:00:00',
                           type.output = 'raw')
 
 # print results
@@ -462,7 +466,7 @@ library(rvest)
 
 # set url and xpath
 my.url <- 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
-my.xpath <- '//*[@id="mw-content-text"]/table[1]'
+my.xpath <- '//*[@id="mw-content-text"]/div/table[1]'
 
 # get nodes from html
 out.nodes <- html_nodes(read_html(my.url),
@@ -482,13 +486,13 @@ print(head(df.SP500Stocks))
 #' 
 #' ### Scraping the Website of the Reserve Bank of
 #' 
-#' As another example of webscraping with R, let’s
+#' As another example of webscraping with R, letâ€™s
 #' 
 ## ----RBA-website, echo = FALSE, out.width = '75%', fig.cap = 'Website for the Reserve Bank of Australia'----
 knitr::include_graphics('figs/website_RBA-webscrapping.png')
 
 #' 
-#' As you can see, the website offers financial in
+#' The website offers several information such as 
 #' 
 ## ---- eval=FALSE---------------------------------------------------------
 ## my.xpath.inflation <- '//*[@id="content"]/section[1]/div/div[2]/p'

@@ -217,7 +217,7 @@ print(sample(c('elem 1','elem 2','elem 3'), 1))
 #' 
 #' At this point, it is important to acknowledge t
 #' 
-#' However, you can select set the place in the qu
+#' However, you can explicitly select set the plac
 #' 
 ## ------------------------------------------------------------------------
 # set seed with integer 10
@@ -730,6 +730,10 @@ my.char <- gsub(x = my.char,
 print(my.char)
 
 # substitute ALL 'ABC' for 'XXX' with str_replace_all
+
+# set my.char again
+my.char <- 'ABCDEF-ABCDEF-ABC'
+
 my.char <- str_replace_all(string = my.char, 
                            pattern = 'ABC', 
 						   replacement = 'XXX')
@@ -938,7 +942,7 @@ print(stringr::str_to_upper('abc'))
 #' 
 #' Object class `factor` is used to represent grou
 #' 
-#' The object class `factor` offers a special obje
+#' The `factor` class offers a special object to d
 #' 
 #' 
 #' ### Creating `factors`
@@ -1508,7 +1512,7 @@ my.hours <- format(my.datetime, '%H')
 print(my.hours)
 
 #' 
-#' Likewise, by using symbols `%Y%` and `$m`, we c
+#' Likewise, by using symbols `%M` and `%S`, we co
 #'  
 #' 
 #' ### Find the Current Date and Time

@@ -11,6 +11,7 @@
 #' What differs one financial contract to the othe
 #' 
 #' Issuing stocks is an elaborate process. For mos
+#' Investors make money by either selling the stoc
 #' 
 #' Prices in financial markets move according to s
 #' 
@@ -18,7 +19,7 @@
 #' 
 #' Another event that impacts price is the payment
 #' 
-#' In it raw form, price data is sampled whenever 
+#' In its raw form, price data is recorded wheneve
 #' 
 #' The data from Yahoo Finance or others is in the
 #' 
@@ -79,9 +80,9 @@ acum.arit.ret <- c(1, cumprod(1+na.omit(arit.ret)))
 print(acum.arit.ret)
 
 #' 
-#' Notice how it was necessary to omit all `NA` va
+#' In this case, the investor starts with 100% of 
 #' 
-#' The second return is the logarithmic (or log-re
+#' The second type of return is the logarithmic (o
 #' 
 #' 
 #' 
@@ -105,7 +106,7 @@ log.ret <- c(NA, diff(log(P)))
 #' 
 ## ------------------------------------------------------------------------
 # calculate accumulated log. return
-acum.log.ret <- c(1, 1+cumsum(na.omit(arit.ret)))
+acum.log.ret <- c(1, 1+cumsum(na.omit(log.ret)))
 				  
 # print result
 print(acum.log.ret)

@@ -790,13 +790,17 @@ print(my.df)
 #' 
 #' Notice, in the previous example, the names of t
 #' 
+## ---- eval=TRUE, tidy=FALSE----------------------------------------------
+# set two df with different colnames
+my.df.1 <- data.frame(col1 = 1:5, 
+                      col2 = rep('a', 5))
+my.df.2 <- data.frame(col1 = 6:10, 
+                      col3 = rep('b', 5))
+
+
+#' 
+#' 
 ## ---- error=TRUE, eval=FALSE, tidy=FALSE---------------------------------
-## # set two df with different colnames
-## my.df.1 <- data.frame(col1 = 1:5,
-##                       col2 = rep('a', 5))
-## my.df.2 <- data.frame(col1 = 6:10,
-##                       col3 = rep('b', 5))
-## 
 ## # bind them by rows (ERROR)
 ## my.df <- rbind(my.df.1, my.df.2)
 
@@ -868,7 +872,7 @@ print(my.df)
 #' 
 #' From the result, we can see the resulting `data
 #' 
-#' Another usefull function is `match`, which does
+#' Another useful function is `match`, which does 
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # set lookup index
@@ -887,14 +891,13 @@ my.df.1$y.2 <- my.df.2$y[idx]
 print(my.df.1)
 
 #' 
-#' A different from the use of `merge` is that `NA
 #' 
 #' 
 #' ### Reporting a `Dataframe` Table
 #' 
 #' `Dataframes` can be used to represent and expor
 #' 
-#' A more elaborate way is to remove the middle ma
+#' A more elaborate, and recommended, way is to re
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # set number of rows in table
@@ -1039,6 +1042,9 @@ STOCK3 <- c(6, 7, 7.5, 6)
 # create wide dataframe
 my.df.wide <- data.frame(refdate, STOCK1, STOCK2, STOCK3)
 
+# print it
+print(my.df.wide)
+
 # convert wide to long
 my.df.long <- gather(data = my.df.wide,
                      key = 'ticker',
@@ -1089,7 +1095,7 @@ print(my.df.wide.converted)
 #' 
 #' ### Extensions of the `dataframe` Class
 #' 
-#' As mentioned in the previous chapter, one of th
+#' As mentioned in previous chapter, one of the be
 #' 
 #' For example, it is common in research to work w
 #' 

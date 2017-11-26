@@ -80,7 +80,7 @@
 #' 
 #' ## Resources in the Web
 #' 
-#' The R community is vivid and engaging. There ar
+#' **The R community is vivid and engaging**. Ther
 #' 
 #' Learning and using R can be a social experience
 #' 

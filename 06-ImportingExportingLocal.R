@@ -165,11 +165,11 @@ save(list = c('my.x'), file = my.file)
 #' We can verify the existence of the file with th
 #' 
 ## ------------------------------------------------------------------------
-# print contents of data folder
-print(list.files('data'))
+# check if file exists
+file.exists('my.file')
 
 #' 
-#' As expected, the `r my.file` file is available,
+#' As expected, file `r my.file` is available. Now
 #' 
 ## ------------------------------------------------------------------------
 # clear environment
