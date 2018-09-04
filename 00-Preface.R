@@ -24,9 +24,9 @@
 #' 
 #' - **[Chapter 7 - Importing Financial Data from 
 #' 
-#' - **[Chapter 8 - Creating and Saving Figures wi
+#' - **[Chapter 8 - Programming and Data Analysis 
 #' 
-#' - **[Chapter 9 - Programming and Data Analysis 
+#' - **[Chapter 9 - Creating and Saving Figures wi
 #' 
 #' 
 #' - **[Chapter 10 - Financial Econometrics with R
@@ -45,7 +45,7 @@
 #' 
 #' \vspace{0.5cm}
 #' 
-#' A suggestion, before you read the book, go to t
+#' A suggestion, before you read the rest of the b
 #' 
 #' I hope you enjoy this book and find it useful. 
 #' 

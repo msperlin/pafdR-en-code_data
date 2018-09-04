@@ -190,7 +190,7 @@ print(my.rnd.vec)
 #' If we wanted two random elements from `my.rnd.v
 #' 
 ## ------------------------------------------------------------------------
-# sample one element of my.vec
+# sample two elements of my.vec
 my.rnd.vec <- sample(my.vec, size = 2)
 
 # print it
@@ -298,7 +298,7 @@ print(my.x)
 #' This modification can also be performed block-w
 #' 
 ## ------------------------------------------------------------------------
-# set vector 
+# set vector
 my.x <- 0:5
 
 # set the first three elements to 5
@@ -311,7 +311,7 @@ print(my.x)
 #' Using conditions to change values in a vector i
 #' 
 ## ------------------------------------------------------------------------
-# set vector 
+# set vector
 my.x <- -5:5
 
 # set any value lower than 2 to 0
@@ -404,7 +404,7 @@ print(sum(my.x))
 
 #' 
 #' * **prod** - Returns the product (multiplicatio
-#' 	
+#' 
 ## ------------------------------------------------------------------------
 # set vector
 my.x <- 1:10
@@ -412,9 +412,9 @@ my.x <- 1:10
 # print prod
 print(prod(my.x))
 
-#' 	
+#' 
 #' * **max** - Returns the maximum value of a `num
-#' 	
+#' 
 ## ------------------------------------------------------------------------
 # set vector
 x <- c(10, 14, 9, 2)
@@ -424,7 +424,7 @@ print(max(x))
 
 #' 
 #' * **min** - Returns the minimum value of a `num
-#' 	
+#' 
 ## ------------------------------------------------------------------------
 # set vector
 x <- c(12, 15, 9, 2)
@@ -434,7 +434,7 @@ print(min(x))
 
 #' 
 #' * **which.max** - Returns the position of the m
-#' 	
+#' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # set vector
 x <- c(100, 141, 9, 2)
@@ -447,16 +447,16 @@ cat(paste('The position of the maximum value of x is',
           which.max.x))
 cat(' Its value is ', x[which.max.x])
 
-#' 	
+#' 
 #' * **which.min** - Returns the position of the m
-#' 	
+#' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # set vector
 x <- c(10, 14, 9, 2)
 
 # find min value of x
 which.min.x <- which.min(x)
-cat(paste('The position of the minimum value of x is ', 
+cat(paste('The position of the minimum value of x is ',
           which.min.x))
 
 #' 
@@ -482,7 +482,7 @@ my.x <- 1:25
 # print cumsum
 print(cumsum(my.x))
 
-#' 	
+#' 
 #' 
 #' * **cumprod** - Returns the cumulative product 
 #' 
@@ -504,7 +504,7 @@ my.x <- c(1,1,2,3,3,5)
 print(unique(my.x))
 
 #' 
-#' 	
+#' 
 #' ## `Character` Objects
 #' 
 #' The `character` class, or simply text class, is
@@ -600,11 +600,11 @@ print(LETTERS)
 
 #' 
 #' Note that, in both cases, `letters` and `LETTER
-#' 	
+#' 
 ## ------------------------------------------------------------------------
 # print abreviation and full names of months
-print(month.abb)	
-print(month.name)	
+print(month.abb)
+print(month.name)
 
 #' 
 #' ### Selecting Characters of a Text Object
@@ -641,8 +641,8 @@ print(my.substr)
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # build char vec
-my.char.vec <- paste0(c('123','231','321'), 
-                      ' - other ignorable text') 
+my.char.vec <- paste0(c('123','231','321'),
+                      ' - other ignorable text')
 print(my.char.vec)
 
 #' 
@@ -673,7 +673,7 @@ ids.vec <- str_sub(my.char.vec, 1, 3)
 my.char <- 'ABCDEF-ABCDEF-ABC'
 
 # find position of FIRST 'D' using regexpr
-pos <- regexpr(pattern = 'D', text = my.char, fixed = TRUE) 
+pos <- regexpr(pattern = 'D', text = my.char, fixed = TRUE)
 print(pos)
 
 # find position of 'D' using str_locate
@@ -688,7 +688,7 @@ print(pos)
 my.char <- 'ABCDEF-ABCDEF-ABC'
 
 # find position of ALL 'D' using regexpr
-pos <- gregexpr(pattern = 'D', text = my.char, fixed = TRUE) 
+pos <- gregexpr(pattern = 'D', text = my.char, fixed = TRUE)
 print(pos)
 
 # find position of ALL 'D' using str_locate_all
@@ -704,14 +704,14 @@ print(pos)
 my.char <- 'ABCDEF-ABCDEF-ABC'
 
 # substitute the FIRST 'ABC' for 'XXX' with sub
-my.char <- sub(x = my.char, 
-               pattern = 'ABC', 
+my.char <- sub(x = my.char,
+               pattern = 'ABC',
 			   replacement = 'XXX')
 print(my.char)
 
 # substitute the FIRST 'ABC' for 'XXX' with str_replace
-my.char <- str_replace(string = my.char, 
-                       pattern = 'ABC', 
+my.char <- str_replace(string = my.char,
+                       pattern = 'ABC',
 					   replacement = 'XXX')
 print(my.char)
 
@@ -723,10 +723,10 @@ print(my.char)
 my.char <- 'ABCDEF-ABCDEF-ABC'
 
 # substitute all 'ABC' for 'XXX'  with gsub
-my.char <- gsub(x = my.char, 
-                pattern = 'ABC', 
+my.char <- gsub(x = my.char,
+                pattern = 'ABC',
 				replacement = 'XXX')
-				
+
 print(my.char)
 
 # substitute ALL 'ABC' for 'XXX' with str_replace_all
@@ -734,8 +734,8 @@ print(my.char)
 # set my.char again
 my.char <- 'ABCDEF-ABCDEF-ABC'
 
-my.char <- str_replace_all(string = my.char, 
-                           pattern = 'ABC', 
+my.char <- str_replace_all(string = my.char,
+                           pattern = 'ABC',
 						   replacement = 'XXX')
 print(my.char)
 
@@ -748,15 +748,15 @@ my.char <- c('ABCDEF','DBCFE','ABC')
 
 # create an example of vector
 my.char.vec <- paste(sample(my.char, 5, replace = T),
-                     sample(my.char, 5, replace = T), 
+                     sample(my.char, 5, replace = T),
 					 sep = ' - ')
 
 # show it
 print(my.char.vec)
 
 # substitute all occurrences of 'ABC'
-my.char.vec <- str_replace_all(string = my.char.vec, 
-                               pattern = 'ABC', 
+my.char.vec <- str_replace_all(string = my.char.vec,
+                               pattern = 'ABC',
 							   replacement = 'XXX')
 
 # print result
@@ -883,7 +883,7 @@ print(my.comb.vec)
 #' Let's explore an example. Here, we will import 
 #' 
 ## ------------------------------------------------------------------------
-# read text file 
+# read text file
 my.char <- readLines('data/FileWithLatinChar.txt')
 
 # print it
@@ -982,7 +982,7 @@ print(my.status)
 #' On occasion, the data in `my.status` only shows
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
-my.status <- factor(c('Single', 'Single', 'Single'), 
+my.status <- factor(c('Single', 'Single', 'Single'),
                     levels = c('Single', 'Married'))
 print(my.status)
 
@@ -1030,7 +1030,7 @@ print(my.factor)
 #' Attention is required when converting a `factor
 #' 
 ## ------------------------------------------------------------------------
-# create factor 
+# create factor
 my.char <-factor(c('a', 'b', 'c'))
 
 # convert and print
@@ -1063,11 +1063,11 @@ print(as.numeric(as.character(my.values)))
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # create factor
-my.factor <- factor(sample(c('Pref', 'Ord'), 
-                             size = 20, 
+my.factor <- factor(sample(c('Pref', 'Ord'),
+                             size = 20,
 							 replace = TRUE))
-							 
-# print it 
+
+# print it
 print(my.factor)
 
 # print contingency table
@@ -1078,12 +1078,12 @@ print(table(my.factor))
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # set factors
-my.factor.1 <- factor(sample(c('Pref', 'Ord'), 
-                             size = 20, 
+my.factor.1 <- factor(sample(c('Pref', 'Ord'),
+                             size = 20,
 							 replace = TRUE))
-							 
-my.factor.2 <- factor(sample(paste('Grupo', 1:3), 
-                             size = 20, 
+
+my.factor.2 <- factor(sample(paste('Grupo', 1:3),
+                             size = 20,
 							 replace = TRUE))
 
 # print contingency table with two factors
@@ -1106,7 +1106,7 @@ print(levels(my.factor))
 
 #' 
 #' * **as.factor** - Transforms an object to the c
-#' 	
+#' 
 ## ------------------------------------------------------------------------
 # set char
 my.y <- c('a','b', 'c', 'c', 'a')
@@ -1120,7 +1120,7 @@ print(my.factor)
 #' 
 #' 
 #' * **split** - Based on a grouping variable and 
-#' 	
+#' 
 ## ------------------------------------------------------------------------
 # set factor and numeric
 my.factor <- factor(c('A','B','C','C','C','B'))
@@ -1131,9 +1131,9 @@ my.l <- split(x = my.x, f = my.factor)
 
 print(my.l)
 
-#' 	
 #' 
-#' ## `Logical` Objects 
+#' 
+#' ## `Logical` Objects
 #' 
 #' Logical tests are at the heart of R. In one lin
 #' 
@@ -1200,7 +1200,7 @@ print(my.x[idx])
 #' 
 #' Be aware that, in both cases, we used parenthes
 #' 
-#' 	
+#' 
 #' ## Date and Time Objects
 #' 
 #' The representation and manipulation of dates is
@@ -1224,7 +1224,7 @@ print(my.date)
 #' Notice, in the previous example, dates are repr
 #' 
 ## ------------------------------------------------------------------------
-# set Date from dd/mm/yyyy 
+# set Date from dd/mm/yyyy
 my.date <- as.Date('24/06/2016')
 
 # print result (WRONG)
@@ -1270,7 +1270,7 @@ my.date.2 <- my.date + 1
 # print result
 print(my.date.2)
 
-#'  
+#' 
 #' This property also works with vectors, facilita
 #' 
 ## ------------------------------------------------------------------------
@@ -1289,8 +1289,8 @@ my.date.1 <- as.Date('2017-03-07')
 my.date.2 <- as.Date('2017-03-20')
 
 # set sequence
-my.vec.date <- seq(from = my.date.1, 
-                   to = my.date.2, 
+my.vec.date <- seq(from = my.date.1,
+                   to = my.date.2,
 				   by = '2 days')
 
 # print result
@@ -1305,8 +1305,8 @@ my.date.1 <- as.Date('2017-03-07')
 my.date.2 <- as.Date('2017-10-20')
 
 # set sequence
-my.vec.date <- seq(from = my.date.1, 
-                   to = my.date.2, 
+my.vec.date <- seq(from = my.date.1,
+                   to = my.date.2,
 				   by = '1 month')
 
 # print result
@@ -1321,11 +1321,11 @@ my.date.1 <- as.Date('2016-06-27')
 my.date.2 <- as.Date('2016-07-27')
 
 # set sequence with 10 elements
-my.vec.date <- seq(from = my.date.1, 
-                   to = my.date.2, 
+my.vec.date <- seq(from = my.date.1,
+                   to = my.date.2,
 				   length.out = 10)
 
-# print result				   
+# print result
 print(my.vec.date)
 
 #' 
@@ -1378,7 +1378,7 @@ last.date <- as.Date('2016-06-15')
 my.date.vec <- as.Date('2016-05-25') + seq(0,30)
 my.prices <- seq(1,10, length.out = length(my.date.vec))
 
-# print vectors 
+# print vectors
 print(my.prices)
 print(my.date.vec)
 
@@ -1462,11 +1462,11 @@ print(my.timedate.tz + 30)
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # create vector of dates
-my.dates <- seq(from = as.Date('2016-01-01'), 
-                to = as.Date('2016-01-15'), 
+my.dates <- seq(from = as.Date('2016-01-01'),
+                to = as.Date('2016-01-15'),
 				by = '1 day')
-				
-# change format				
+
+# change format
 my.dates.brformat <- format(my.dates, '%d/%m/%Y')
 
 # print result
@@ -1490,7 +1490,7 @@ print(my.dates.brformat)
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # set custom format
-my.dates.myformat <- format(my.dates, 
+my.dates.myformat <- format(my.dates,
                             'Year=%Y | Month=%m | Day=%d')
 
 # print result
@@ -1501,8 +1501,8 @@ print(my.dates.myformat)
 #' 
 ## ------------------------------------------------------------------------
 # create vector of date-time
-my.datetime <- seq(from = as.POSIXlt('2016-01-01 12:00:00'), 
-                   to = as.POSIXlt('2016-01-01 18:00:00'), 
+my.datetime <- seq(from = as.POSIXlt('2016-01-01 12:00:00'),
+                   to = as.POSIXlt('2016-01-01 18:00:00'),
                    by = '1 hour')
 
 # get hours from POSIXlt
@@ -1513,7 +1513,7 @@ print(my.hours)
 
 #' 
 #' Likewise, by using symbols `%M` and `%S`, we co
-#'  
+#' 
 #' 
 #' ### Find the Current Date and Time
 #' 
@@ -1550,11 +1550,11 @@ print(my.str)
 #' ### Other Functions for Manipulating Dates and 
 #' 
 #' * **weekdays** - Returns the day of the week fr
-#' 	
+#' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # set date vector
-my.dates <- seq(from = as.Date('2016-01-01'), 
-                to = as.Date('2016-01-5'), 
+my.dates <- seq(from = as.Date('2016-01-01'),
+                to = as.Date('2016-01-5'),
 				by = '1 day')
 
 # find corresponding weekdays
@@ -1568,8 +1568,8 @@ print(my.weekdays)
 #' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # create date vector
-my.dates <- seq(from = as.Date('2016-01-01'), 
-                to = as.Date('2016-12-31'), 
+my.dates <- seq(from = as.Date('2016-01-01'),
+                to = as.Date('2016-12-31'),
 				by = '1 month')
 
 # find months
@@ -1586,9 +1586,9 @@ print(my.months)
 my.quarters <- quarters(my.dates)
 print(my.quarters)
 
-#' 	
+#' 
 #' * **OlsonNames** - Returns an array with the ti
-#' 	
+#' 
 ## ------------------------------------------------------------------------
 # get possible timezones
 possible.tz <- OlsonNames()
@@ -1598,23 +1598,23 @@ print(possible.tz[1:5])
 
 #' 
 #' * **Sys.timezone** - Returns the current timezo
-#' 	
+#' 
 ## ------------------------------------------------------------------------
 # get current timezone
 print(Sys.timezone())
 
-#' 	
+#' 
 #' * **cut** - Returns a factor by grouping dates 
-#' 	
+#' 
 ## ---- tidy=FALSE---------------------------------------------------------
 # set example date vector
-my.dates <- seq(from = as.Date('2016-01-01'), 
-                to = as.Date('2016-03-01'), 
+my.dates <- seq(from = as.Date('2016-01-01'),
+                to = as.Date('2016-03-01'),
 				by = '5 days')
 
 # group vector based on monthly breaks
-my.month.cut <- cut(x = my.dates, 
-                    breaks = 'month', 
+my.month.cut <- cut(x = my.dates,
+                    breaks = 'month',
 					labels = c('Jan', 'Fev', 'Mar'))
 
 # print result
@@ -1631,8 +1631,8 @@ my.cut <- cut(x = my.datetime, breaks = '30 secs')
 # print result
 print(my.cut)
 
-#' 		
-#' 		
+#' 
+#' 
 #' ## Missing Data - `NA` (_Not available_)
 #' 
 #' One of the main innovations of R, with respect 
@@ -1728,7 +1728,7 @@ print(nchar(my.char))
 #' ### Other Useful Functions for Treating  `NA`
 #' 
 #' * **complete.cases** - Returns a logical vector
-#' 	
+#' 
 ## ------------------------------------------------------------------------
 # create matrix
 my.mat <- matrix(1:15, nrow = 5)

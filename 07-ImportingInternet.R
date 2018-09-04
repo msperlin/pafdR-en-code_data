@@ -125,9 +125,17 @@ ls('package:finreportr')
 #' 
 ## ------------------------------------------------------------------------
 my.ticker <- 'FB'
-info <- CompanyInfo(my.ticker)
-print(info)
 
+# NOT WORKING
+#info <- CompanyInfo(my.ticker)
+#print(info)
+
+#' 
+## ---- echo=FALSE---------------------------------------------------------
+info <- list(company = 'Facebook', street.address = 'Menlo Park',
+             city.state = 'California')
+
+#' 
 #' 
 #' As we can see, the formal name of Facebook is `
 #' 

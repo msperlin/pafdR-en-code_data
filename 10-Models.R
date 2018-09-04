@@ -907,13 +907,10 @@ print(my.garchfit)
 #' 
 #' 
 ## ------------------------------------------------------------------------
-library(FinTS)
+library(MTS)
 
 # test for Arch effects
-my.arch.test <- ArchTest(x = df.SP500$ret, lags = 5)
-
-# print result
-print(my.arch.test)
+archTest(rt = na.omit(df.SP500$ret))
 
 #' 
 #' The evidence is strong for Arch effects in SP50

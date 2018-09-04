@@ -1014,7 +1014,11 @@ knitr::kable(temp.df, digits = 2)
 #' **In the long format**, each row of the `datafr
 #' 
 ## ---- echo=FALSE---------------------------------------------------------
-wide.df <- tidyr::gather(temp.df, key = 'refdate')
+wide.df <- tidyr::gather(data = temp.df,
+                         key = 'ticker',
+                         value = 'price',
+                         - refdate)
+wide.df
 
 colnames(wide.df) <- c('refdate', 'ticker', 'price')
 

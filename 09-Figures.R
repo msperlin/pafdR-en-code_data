@@ -52,8 +52,8 @@ temp.df <- my.df[my.df$ticker == 'MMM', ]
 # plot its prices
 qplot(data = temp.df, 
       x = ref.date, 
-	  y = price.adjusted, 
-	  geom = 'line')
+      y = price.adjusted, 
+      geom = 'line')
 
 #' 
 #' In the previous example, the name of the axis c
@@ -61,10 +61,10 @@ qplot(data = temp.df,
 ## ----eval=TRUE, fig.height=my.fig.height, fig.width=my.fig.width---------
 qplot(data = temp.df, 
       x = ref.date, 
-	  y = price.adjusted, 
-	  geom = 'line', 
-	  xlab = 'Dates', 
-	  ylab = 'Adjusted closing prices')
+      y = price.adjusted, 
+      geom = 'line', 
+      xlab = 'Dates', 
+      ylab = 'Adjusted closing prices')
 
 #' 
 #' Notice how the horizontal axis of dates in the 
@@ -139,7 +139,7 @@ temp.df <- my.df[idx, ]
 ## ---- eval=TRUE, tidy=FALSE, fig.height=my.fig.height, fig.width=my.fig.width----
 p <- ggplot(data = temp.df, aes(x = ref.date, 
                                 y = price.adjusted, 
-								colour=ticker))
+                                colour=ticker))
 p <- p + geom_line()
 p <- p + labs(x = 'Dates', y = 'Adjusted closing prices')
 print(p)
@@ -162,7 +162,11 @@ my.df.yc <- getYieldCurve(year = 2016)$df
 my.df.yc$ref.date <- as.Date(rownames(my.df.yc))
 
 # change to long format and convert to factor
-my.df.yc <- gather(data=my.df.yc, key =ref.date)
+my.df.yc <- gather(data = my.df.yc,
+                   key = 'maturity',
+                   value = 'rate',
+                   -ref.date)
+
 names(my.df.yc) <- c('ref.date', 'maturity', 'rate')
 my.df.yc$maturity <- as.factor(my.df.yc$maturity)
 
@@ -243,11 +247,11 @@ temp.df <- my.df[idx, ]
 plot.df <- temp.df %>%
   group_by(ticker) %>%
   summarise(sharpe.ratio = mean(ret)/sd(ret))
-  
+
 
 p <- ggplot(data = plot.df, 
             aes(x = reorder(ticker, -sharpe.ratio), 
-			y = sharpe.ratio))
+                y = sharpe.ratio))
 p <- p + geom_bar(stat = 'identity')
 p <- p + labs(x = 'Tickers', y = 'Daily Sharpe Ratio')
 print(p)
@@ -278,7 +282,7 @@ print(fcts)
 ## ---- eval=TRUE, tidy=FALSE, fig.height=my.fig.height, fig.width=my.fig.width----
 p <- ggplot(data = temp.df, aes(x = ref.date, 
                                 y = price.adjusted, 
-								colour=ticker))
+                                colour=ticker))
 p <- p + geom_line()
 p <- p + labs(x = 'Dates', y = 'Adjusted closing prices')
 p <- p + theme_bw()
@@ -320,7 +324,7 @@ p <- my.df %>%
   labs(x = 'Date', 
        y = 'Adjusted closing prices') + 
   facet_wrap(facets = ~ticker)
-	
+
 print(p)
 
 #' 
@@ -340,7 +344,7 @@ p <- my.df %>%
   labs(x = 'Date', 
        y = 'Returns') +   
   facet_wrap(facets = ~ticker)
-	
+
 print(p)
 
 #' 
@@ -348,7 +352,7 @@ print(p)
 #' 
 ## ----eval=TRUE, fig.height=my.fig.height, fig.width=my.fig.width---------
 p <- p + facet_wrap(facets = ~ticker, scales = 'free')
-	
+
 print(p)
 
 #' 
@@ -392,7 +396,7 @@ print(p)
 ## ----eval=TRUE, fig.height=my.fig.height, fig.width=my.fig.width---------
 p <- ggplot(data = my.df, aes(x = ret))
 p <- p + geom_histogram(bins = 25)
-  
+
 print(p)
 
 #' 
@@ -412,7 +416,7 @@ p <- my.df %>%
   ggplot(aes(x = ret)) + 
   geom_histogram(bins = 50) +
   facet_wrap(facets = ~ticker)
-  
+
 print(p)
 
 #' 
@@ -424,7 +428,7 @@ p <- my.df %>%
   ggplot(aes(x = ret)) + 
   geom_density() + 
   facet_wrap(facets = ~ticker)
-  
+
 print(p)
 
 #' 
@@ -447,7 +451,7 @@ p <- my.df %>%
   filter(ticker %in% my.tickers) %>%
   ggplot(aes(x = ticker, y = price.adjusted)) + 
   geom_boxplot()
-  
+
 print(p)
 
 #' 
@@ -474,7 +478,7 @@ p <- ggplot(data = temp.df, aes(sample = y))
 #p <- p + labs(title = 'QQ plot for simulated data')
 p <- p + geom_qq(distribution = qnorm, 
                  dparams = c(mean=my.mean, sd=my.sd))
-  
+
 print(p)
 
 #' 
@@ -509,7 +513,7 @@ norm.vec <- function(y){
 # apply function  
 my.l <- tapply(X = temp.df$ret, 
                INDEX = factor(temp.df$ticker), 
-			   FUN = norm.vec)
+               FUN = norm.vec)
 
 # reorder list (tapply sorts alphabetically)
 my.l <- my.l[as.character(unique(temp.df$ticker))]
@@ -549,11 +553,11 @@ p <- my.df %>%
   geom_line() + 
   labs(x = 'Date', 
        y = 'Adjusted closing prices')
-	
+
 my.fig.file <- 'fig_ggplot/MyPrices.png'
 ggsave(filename = my.fig.file, 
        plot=p,
-	   dpi = 600)
+       dpi = 600)
 
 #' 
 #' You can verify the creation of the file with fu

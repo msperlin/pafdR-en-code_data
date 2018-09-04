@@ -31,7 +31,7 @@ mean(1:5, na.rm = TRUE)
 #' 
 #' Functions are at the heart of R and we will ded
 #' 
-#'  
+#' 
 #' ## International and Local Formats
 #' 
 #' Before beginning to explain the use of R and RS
@@ -56,7 +56,7 @@ Sys.localeconv()
 #' 
 #' A note, however, is that you'll need to run thi
 #' 
-#' 	
+#' 
 #' ## Types of Files in R
 #' 
 #' Like any other programming platform, R has a fi
@@ -73,7 +73,7 @@ Sys.localeconv()
 #' ## Explaining the RStudio Screen
 #' 
 #' After installing the two programs, R and RStudi
-#'  
+#' 
 #' After opening RStudio, the resulting window sho
 #' 
 #' 
@@ -149,6 +149,7 @@ print(50:100)
 #' 
 #' 
 #' After pasting all the commands in the editor, s
+#' 
 #' 
 #' ### RStudio shortcuts
 #' 
@@ -403,17 +404,17 @@ cat(paste0(my.text.1, my.text.2, my.text.3))
 #' 
 ## ------------------------------------------------------------------------
 # example using the argument sep
-cat(paste(my.text.1, my.text.2, my.text.3, sep = ', ')) 
+cat(paste(my.text.1, my.text.2, my.text.3, sep = ', '))
 
 #' 
 #' If we had an atomic vector with all elements to
 #' 
 ## ------------------------------------------------------------------------
-# set character object 
+# set character object
 my.text <-c('I am a text', 'very beautiful', 'and informative.')
 
 # example of using the collapse argument in paste
-cat(paste(my.text, collapse = ', ')) 
+cat(paste(my.text, collapse = ', '))
 
 #' 
 #' Going forward, command `format` is used to form
@@ -474,7 +475,7 @@ my.nrow <- nrow(M)
 my.ncol <- ncol(M)
 my.n.elements <- length(M)
 
-# display message 
+# display message
 cat('The number of lines in M is ', my.nrow)
 cat('The number of columns in M is ', my.ncol)
 cat('The number of elements in M is ', my.n.elements)
@@ -571,7 +572,7 @@ print(my.vec[4])
 piece.x.2 <- my.x[my.x>3]
 
 # print it
-print(piece.x.2) 
+print(piece.x.2)
 
 #' 
 #' It is also possible to index elements by more t
@@ -612,8 +613,8 @@ print(my.piece.x)
 # create a logical object
 my.logical <- my.y > 0
 
-# print it 
-print(my.logical) 
+# print it
+print(my.logical)
 
 # find its class
 class(my.logical)
@@ -674,7 +675,7 @@ cat("C:/Dropbox/My Books/pafdR (en)/Book Content")
 #' 
 ## ----eval=FALSE----------------------------------------------------------
 ## # set where to change directory
-## my.d <- 'C:/My Research/'
+## my.d <- 'C:/MyResearch/'
 ## 
 ## # change it
 ## setwd(my.d)
@@ -684,7 +685,7 @@ cat("C:/Dropbox/My Books/pafdR (en)/Book Content")
 #' 
 ## ---- eval=FALSE, error=TRUE---------------------------------------------
 ## # set directory (WRONG WAY)
-## my.d <- 'C:\My Research\'
+## my.d <- 'C:\MyResearch\'
 
 #' 
 #' 
@@ -692,7 +693,7 @@ cat("C:/Dropbox/My Books/pafdR (en)/Book Content")
 #' 
 ## ----eval=FALSE----------------------------------------------------------
 ## # set directory (CORRECT WAY)
-## my.d <- 'C:/My Research/'
+## my.d <- 'C:/MyResearch/'
 ## 
 ## # change dir
 ## setwd(my.d)
@@ -714,7 +715,7 @@ cat("C:/Dropbox/My Books/pafdR (en)/Book Content")
 ## setwd('..')
 
 #' 
-#' So, if you are working in directory `C:/My Rese
+#' So, if you are working in directory `C:/MyResea
 #' 
 #' Another, more modern, way of setting the direct
 #' 
@@ -750,7 +751,7 @@ cat("C:/Dropbox/My Books/pafdR (en)/Book Content")
 # this is a comment (R will not parse it)
 # this is another comment (R will not parse it)
 
-x <- 'abc' # this is an inline comment 
+x <- 'abc' # this is an inline comment
 
 #' 
 #' Comments are a way to communicate any important
@@ -785,20 +786,18 @@ x <- 'abc' # this is an inline comment
 ## # File downloaded from www.sitewithdatafiles.com/data-files/
 ## # The description of the data goes here
 ## # Last file update: 2017-03-10
-## ...
 ## 
-## # Clean data
+## # Clean data -------------------------
 ## # - remove outliers
 ## # - remove unnecessary columns
 ## 
-## ...
+## # Create descriptive tables ----------
 ## 
-## # Report results
-## # - remove outliers
-## # - remove unnecessary columns
 ## 
-## ...
+## # Estimate models --------------------
 ## 
+## 
+## # Report results ---------------------
 
 #' 
 #' This way, once you need to change a particular 
@@ -873,7 +872,7 @@ print(df.cran.pkgs[1:3, ])
 # find number of packages currently installed
 n.local.packages <- nrow(installed.packages())
 
-# print it 
+# print it
 print(n.local.packages)
 
 #' 
@@ -883,7 +882,7 @@ print(n.local.packages)
 #' ### Installing Packages from CRAN
 #' 
 #' To install a package, simply use the command `i
-#'  
+#' 
 ## ----eval=FALSE----------------------------------------------------------
 ## # install package quantmod
 ## install.packages("quantmod")
@@ -947,7 +946,7 @@ fortunes::fortune(10)
 ## ----eval=FALSE----------------------------------------------------------
 ## my.fct <- function(x){
 ##     require(quantmod)
-## 	
+## 
 ## 	df <- getSymbols(x, auto.assign = F)
 ## 	return(df)
 ## }
@@ -971,7 +970,7 @@ fortunes::fortune(10)
 #' The command `update.packages` compares the vers
 #' 
 #' 
-#' ## Using Code Completion with _tab_ 
+#' ## Using Code Completion with _tab_
 #' 
 #' A very useful feature of RStudio is _code compl
 #' 
